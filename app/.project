@@ -20,6 +20,7 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 	</natures>
+<<<<<<< Updated upstream
 	<filteredResources>
 		<filter>
 			<id>1637072528528</id>
@@ -31,4 +32,6 @@
 			</matcher>
 		</filter>
 	</filteredResources>
+=======
+>>>>>>> Stashed changes
 </projectDescription>
