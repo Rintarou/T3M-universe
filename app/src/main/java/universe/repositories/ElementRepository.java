@@ -3,13 +3,13 @@ package universe.repositories;
 import java.util.Optional;
 import java.util.Set;
 
-import javax.lang.model.element.Element;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
+
+import universe.model.Element;
 
 public interface ElementRepository extends JpaRepository<Element, Long> {
 
