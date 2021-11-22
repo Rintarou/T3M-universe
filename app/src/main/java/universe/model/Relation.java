@@ -2,7 +2,6 @@ package universe.model;
 
 import java.util.Set;
 
-import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -19,6 +18,10 @@ public class Relation {
     
     public Relation() {
         
+    }
+
+    public Set<String> getNatures() {
+        return natures;
     }
 
     @Override
