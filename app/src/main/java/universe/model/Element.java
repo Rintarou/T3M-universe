@@ -1,5 +1,6 @@
 package universe.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -8,7 +9,6 @@ import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -52,22 +52,27 @@ public abstract class Element {
     }
     
     public Set<Element> getChildElements() {
-        return null ; //this.childElements;
+        Set<Element> ret = new HashSet<Element>();
+        childElements.stream().map( r -> r.getId().getChild() ).forEach( ret::add );
+        return ret;
     }
-
+    
     public Set<Element> getParentElements() {
-        return null; //parentElements;
+        Set<Element> ret = new HashSet<Element>();
+        childElements.stream().map( r -> r.getId().getParent() ).forEach( ret::add );
+        return ret;
     }
     
     public Set<Element> getChildElements( Class<? extends Element> clazz ) {
-        //TODO 
-        //this.childElements.stream().filter( el -> el instanceof clazz ) ;
-        return null;
+        Set<Element> ret = new HashSet<Element>();
+        childElements.stream().map( r -> r.getId().getChild() ).filter( e -> clazz.isInstance( e ) ).forEach( ret::add );
+        return ret;
     }
     
-    public Set<Element> getParentElements( Class<? extends Element> c ) {
-        //TODO
-        return null;
+    public Set<Element> getParentElements( Class<? extends Element> clazz ) {
+        Set<Element> ret = new HashSet<Element>();
+        childElements.stream().map( r -> r.getId().getParent() ).filter( e -> clazz.isInstance( e ) ).forEach( ret::add );
+        return ret;
     }
 
     public String getName() {

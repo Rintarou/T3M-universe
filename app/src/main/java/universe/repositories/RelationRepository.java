@@ -21,4 +21,6 @@ public interface RelationRepository extends JpaRepository<Relation, RelationKey>
 
     //@Query("select r from Relation r where r.natures.contains(:nature)")
     Set<Relation> findByNatures( @Param("nature") String nature );
+
+    
 }

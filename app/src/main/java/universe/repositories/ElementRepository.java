@@ -3,8 +3,6 @@ package universe.repositories;
 import java.util.Optional;
 import java.util.Set;
 
-import javax.lang.model.element.Element;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -21,6 +19,9 @@ public interface ElementRepository extends JpaRepository<Element, Long> {
     @Query("select e from Element where e.name=:name")
     Set<Element> findByName( @Param("name") String name );
 
+    // @Query("from :Class")
+    // Set<? extends Element> findByType( @Param("Class") String s );
+
     @Transactional
     @Modifying
     @Query("delete from Element e where e=:element")
@@ -30,5 +31,6 @@ public interface ElementRepository extends JpaRepository<Element, Long> {
     @Modifying
     @Query("delete from Element e where e.id =:id")
     void deleteById( @Param("id") Long id );
+
     
 }

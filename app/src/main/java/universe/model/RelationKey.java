@@ -20,6 +20,10 @@ public class RelationKey implements Serializable {
 
     }
 
+    public Element getParent() { return this.parent; }
+    
+    public Element getChild() { return this.child; }
+
     @Override
     public int hashCode() {
         final int prime = 31;
