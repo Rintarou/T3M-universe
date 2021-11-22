@@ -8,6 +8,7 @@ import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -24,6 +25,7 @@ import javax.persistence.Table;
 @SequenceGenerator( name = "seqElements", sequenceName = "seq_elements", allocationSize = 1, initialValue = 50 )
 public abstract class Element {
     @Id
+    //@GeneratedValue
     @Column( name = "id" )
     private Long id;
     @Column( name = "name" )
