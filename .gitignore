@@ -1,2 +1,3 @@
-app/target/*
-app/.project
+app/target/
+.project
+.vscode
