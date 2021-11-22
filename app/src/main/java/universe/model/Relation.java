@@ -1,5 +1,6 @@
 package universe.model;
 
+
 public class Relation {
     private String nature;
     private Element parent;

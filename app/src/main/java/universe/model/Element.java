@@ -1,18 +1,31 @@
 package universe.model;
 
+import java.lang.annotation.Inherited;
 import java.util.Arrays;
 import java.util.Set;
 
+@Entity
+@Table( name = "entities" )
+@Inheritance( strategy = InheritanceType.SINGLE_TABLE )
+@DiscriminatorColumn( name = "type", discriminatorType = DiscriminatorType.STRING, length = 20 )
+@SequenceGenerator( name = "seqEntities", sequenceName = "seq_entities", allocationSize = 1, initialValue = 50 )
 public abstract class Element {
+    @Id
+    @Column( name = "id" )
+    private Integer id;
+    @Column( name = "name" )
     private String name;
+    @Column( name = "description" )
     private String description;
     //TODO: private Float date;
 
+    @Column( name = "unique" )
     private Boolean unique;
-    private Integer id;
 
-    private Set<Element> parentElements;
-    private Set<Element> childElements;
+    @OneToMany( mappedBy = "id.element" )
+    private Set<Relation> parentElements;
+    @OneToMany( mappedBy = "id.element" )
+    private Set<Relation> childElements;
     
     public Element() {
         
@@ -27,7 +40,7 @@ public abstract class Element {
     }
     
     public Set<Element> getChildElements( Class<? extends Element> clazz ) {
-        //TODO
+        //TODO 
         //this.childElements.stream().filter( el -> el instanceof clazz ) ;
         return null;
     }
