@@ -6,9 +6,13 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -21,7 +25,7 @@ import javax.persistence.Table;
 public abstract class Element {
     @Id
     @Column( name = "id" )
-    private Integer id;
+    private Long id;
     @Column( name = "name" )
     private String name;
     @Column( name = "description" )
@@ -31,10 +35,15 @@ public abstract class Element {
     @Column( name = "unique" )
     private Boolean unique;
 
-    @OneToMany( mappedBy = "id.elements" )
+    @OneToMany( mappedBy = "id.elements", fetch = FetchType.LAZY )
     private Set<Relation> parentElements;
-    @OneToMany( mappedBy = "id.elements" )
+    @OneToMany( mappedBy = "id.elements", fetch = FetchType.LAZY )
     private Set<Relation> childElements;
+    @ManyToOne
+    @JoinColumn(name = "universe_id", foreignKey = @ForeignKey (name ="universe_elements_id_fk"))
+    private Universe universe;
+    
+    
     
     public Element() {
         
@@ -79,7 +88,7 @@ public abstract class Element {
         this.unique = unique;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

@@ -20,7 +20,8 @@ public class Relation {
     @ManyToOne
     @JoinColumn( name = "child_id", foreignKey = @ForeignKey( name = "relations_child_element_id_fk") )
     private Element child;
-
+    
+    
     public Relation() {
         
     }

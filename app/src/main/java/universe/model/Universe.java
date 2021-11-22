@@ -2,9 +2,11 @@ package universe.model;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,17 +15,19 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "universe")
-@SequenceGenerator(name = "seqUniverse", sequenceName = "seq_universe", allocationSize = 1, initialValue = 100)
+@Table(name = "universes")
+@SequenceGenerator(name = "seqUniverses", sequenceName = "seq_universes", allocationSize = 1, initialValue = 100)
 public class Universe {
 	@Id
 	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqUniverse")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqUniverses")
 	private Long id;
 	@Column(name = "name", length = 100)
 	private String name;
-	@OneToMany(mappedBy = "id.universe")
+	@OneToMany(mappedBy = "id.universes")
 	private List<UserUniverse> userUniverses;
+	@OneToMany(mappedBy = "id.universes", fetch = FetchType.LAZY)
+	private Set<Element> elements;
 	
 	public Universe() {
 		
