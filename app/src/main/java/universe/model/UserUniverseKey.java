@@ -1,24 +1,31 @@
 package universe.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class UserUniverseKey {
-	private AccessRight accessRight;
-	// OneToOne
+import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Embeddable
+public class UserUniverseKey implements Serializable {
+	
+	@ManyToOne
+	@JoinColumn(name = "")
 	private User user;
-	// OneToOne
+	@ManyToOne
+	@JoinColumn(name = "")
 	private Universe universe;
 	
 	public UserUniverseKey() {
 		
 	}
 	
-	public AccessRight getAccessRight() {
-		return accessRight;
+	public UserUniverseKey(User user, Universe universe) {
+		this.user = user;
+		this.universe = universe;
 	}
-	public void setAccessRight(AccessRight accessRight) {
-		this.accessRight = accessRight;
-	}
+	
 	public User getUser() {
 		return user;
 	}

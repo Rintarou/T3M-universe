@@ -3,8 +3,18 @@ package universe.model;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "universe")
 public class Universe {
+	@Id
+	@Column(name = "id")
 	private Long id;
+	@Column(name = "name", length = 100)
 	private String name;
 	//OnetoMany
 	private List<UserUniverseKey> userUniverseKeys;

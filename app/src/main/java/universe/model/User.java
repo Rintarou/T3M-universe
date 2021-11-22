@@ -3,11 +3,23 @@ package universe.model;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "user")
 public class User {
+	@Id
+	@Column(name = "id")
 	private Long id;
+	@Column(name = "login", length = 100)
 	private String login;
+	@Column(name = "password", length = 100)
 	private String password;
-	//OnetoMany
+	//@OneToMany(mappedBy = "")
 	private List<UserUniverseKey> userUniverseKeys;
 	
 	public User(){
@@ -62,8 +74,6 @@ public class User {
 		User other = (User) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	// renvoie le droit d'accès à partir d'un univers
-	
+		
 	
 }
