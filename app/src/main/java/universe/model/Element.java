@@ -35,9 +35,9 @@ public abstract class Element {
     @Column( name = "unique" )
     private Boolean unique;
 
-    @OneToMany( mappedBy = "id.elements", fetch = FetchType.LAZY )
+    @OneToMany( mappedBy = "parent", fetch = FetchType.LAZY )
     private Set<Relation> parentElements;
-    @OneToMany( mappedBy = "id.elements", fetch = FetchType.LAZY )
+    @OneToMany( mappedBy = "child", fetch = FetchType.LAZY )
     private Set<Relation> childElements;
     @ManyToOne
     @JoinColumn(name = "universe_id", foreignKey = @ForeignKey (name ="universe_elements_id_fk"))

@@ -24,9 +24,9 @@ public class Universe {
 	private Long id;
 	@Column(name = "name", length = 100)
 	private String name;
-	@OneToMany(mappedBy = "id.universes")
+	@OneToMany(mappedBy = "id.universe")
 	private List<UserUniverse> userUniverses;
-	@OneToMany(mappedBy = "id.universes", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "universe", fetch = FetchType.LAZY)
 	private Set<Element> elements;
 	
 	public Universe() {

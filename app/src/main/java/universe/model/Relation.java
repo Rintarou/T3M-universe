@@ -1,5 +1,7 @@
 package universe.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
@@ -7,13 +9,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
-
 @Entity
 @Table( name = "relations" )
 public class Relation {
     @Column( name = "nature", length = 30 )
-    private String nature;
+    private Set<String> natures;
+
     @ManyToOne
     @JoinColumn( name = "parent_id", foreignKey = @ForeignKey( name = "relations_parent_element_id_fk") )
     private Element parent;
@@ -26,12 +27,10 @@ public class Relation {
         
     }
 
-    public String getNature() {
-        return nature;
+    public Set<String> getNatures() {
+        return natures;
     }
-    public void setNature(String nature) {
-        this.nature = nature;
-    }
+    
     public Element getParent() {
         return parent;
     }
