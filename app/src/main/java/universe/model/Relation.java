@@ -1,9 +1,24 @@
 package universe.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+
+
+@Entity
+@Table( name = "relations" )
 public class Relation {
+    @Column( name = "nature", length = 30 )
     private String nature;
+    @ManyToOne
+    @JoinColumn( name = "parent_id", foreignKey = @ForeignKey( name = "relations_parent_element_id_fk") )
     private Element parent;
+    @ManyToOne
+    @JoinColumn( name = "child_id", foreignKey = @ForeignKey( name = "relations_child_element_id_fk") )
     private Element child;
 
     public Relation() {

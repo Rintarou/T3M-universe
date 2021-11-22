@@ -1,14 +1,23 @@
 package universe.model;
 
-import java.lang.annotation.Inherited;
-import java.util.Arrays;
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
 @Entity
-@Table( name = "entities" )
+@Table( name = "elements" )
 @Inheritance( strategy = InheritanceType.SINGLE_TABLE )
 @DiscriminatorColumn( name = "type", discriminatorType = DiscriminatorType.STRING, length = 20 )
-@SequenceGenerator( name = "seqEntities", sequenceName = "seq_entities", allocationSize = 1, initialValue = 50 )
+@SequenceGenerator( name = "seqElements", sequenceName = "seq_elements", allocationSize = 1, initialValue = 50 )
 public abstract class Element {
     @Id
     @Column( name = "id" )
@@ -22,9 +31,9 @@ public abstract class Element {
     @Column( name = "unique" )
     private Boolean unique;
 
-    @OneToMany( mappedBy = "id.element" )
+    @OneToMany( mappedBy = "id.elements" )
     private Set<Relation> parentElements;
-    @OneToMany( mappedBy = "id.element" )
+    @OneToMany( mappedBy = "id.elements" )
     private Set<Relation> childElements;
     
     public Element() {
@@ -32,11 +41,11 @@ public abstract class Element {
     }
     
     public Set<Element> getChildElements() {
-        return this.childElements;
+        return null ; //this.childElements;
     }
 
     public Set<Element> getParentElements() {
-        return parentElements;
+        return null; //parentElements;
     }
     
     public Set<Element> getChildElements( Class<? extends Element> clazz ) {
