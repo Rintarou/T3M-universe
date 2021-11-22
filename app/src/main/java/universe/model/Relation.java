@@ -24,6 +24,8 @@ public class Relation {
         return natures;
     }
 
+    public RelationKey getId() { return this.id; }
+
     @Override
     public int hashCode() {
         final int prime = 31;

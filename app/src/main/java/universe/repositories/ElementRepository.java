@@ -19,6 +19,9 @@ public interface ElementRepository extends JpaRepository<Element, Long> {
     @Query("select e from Element where e.name=:name")
     Set<Element> findByName( @Param("name") String name );
 
+    // @Query("from :Class")
+    // Set<? extends Element> findByType( @Param("Class") String s );
+
     @Transactional
     @Modifying
     @Query("delete from Element e where e=:element")
@@ -28,5 +31,6 @@ public interface ElementRepository extends JpaRepository<Element, Long> {
     @Modifying
     @Query("delete from Element e where e.id =:id")
     void deleteById( @Param("id") Long id );
+
     
 }
