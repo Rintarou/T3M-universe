@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @ComponentScan(basePackages = {"universe.service"})
 @PropertySource("classpath:infos.properties")
-@EnableJpaRepositories("projetCommande.repositories")
+@EnableJpaRepositories("universe.repositories")
 public class AppConfig {
 	@Autowired
 	private Environment env;
@@ -51,7 +51,7 @@ public class AppConfig {
 	
 	private Properties hibernateProperties() {
 		Properties properties = new Properties();
-		properties.setProperty("hibernate.hbm2ddl.auto", "validate");
+		properties.setProperty("hibernate.hbm2ddl.auto", "create");
 		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL10Dialect");
 		properties.setProperty("hibernate.show_sql", "true");
 		properties.setProperty("hibernate.format_sql", "true");

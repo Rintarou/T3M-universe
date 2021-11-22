@@ -11,10 +11,10 @@ import javax.persistence.ManyToOne;
 public class UserUniverseKey implements Serializable {
 	
 	@ManyToOne
-	@JoinColumn(name = "")
+	@JoinColumn(name = "user_universe_user_id")
 	private User user;
 	@ManyToOne
-	@JoinColumn(name = "")
+	@JoinColumn(name = "user_universe_universe_id")
 	private Universe universe;
 	
 	public UserUniverseKey() {

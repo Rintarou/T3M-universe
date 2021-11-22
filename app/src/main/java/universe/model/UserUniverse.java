@@ -2,8 +2,11 @@ package universe.model;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
 @Entity
@@ -11,6 +14,8 @@ import javax.persistence.Table;
 public class UserUniverse {
 	@EmbeddedId
 	private UserUniverseKey id;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "access_right", length = 30)
 	private AccessRight accessRight;
 	
 	public UserUniverse() {

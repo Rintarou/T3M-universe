@@ -5,22 +5,27 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user")
+@Table(name = "user_")
+@SequenceGenerator(name = "seqUser", sequenceName = "seq_user", allocationSize = 1, initialValue = 100)
 public class User {
 	@Id
 	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqUser")
 	private Long id;
 	@Column(name = "login", length = 100)
 	private String login;
 	@Column(name = "password", length = 100)
 	private String password;
-	//@OneToMany(mappedBy = "")
-	private List<UserUniverseKey> userUniverseKeys;
+	@OneToMany(mappedBy = "id.user")
+	private List<UserUniverse> userUniverses;
 	
 	public User(){
 		
@@ -50,12 +55,12 @@ public class User {
 		this.password = password;
 	}
 
-	public List<UserUniverseKey> getUserUniverseKeys() {
-		return userUniverseKeys;
+	public List<UserUniverse> getUserUniverses() {
+		return userUniverses;
 	}
 
-	public void setUserUniverseKeys(List<UserUniverseKey> userUniverseKeys) {
-		this.userUniverseKeys = userUniverseKeys;
+	public void setUserUniverses(List<UserUniverse> userUniverses) {
+		this.userUniverses = userUniverses;
 	}
 
 	@Override
