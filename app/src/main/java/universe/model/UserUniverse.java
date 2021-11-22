@@ -10,7 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user_universe")
+@Table(name = "user_universes")
 public class UserUniverse {
 	@EmbeddedId
 	private UserUniverseKey id;
@@ -20,6 +20,11 @@ public class UserUniverse {
 	
 	public UserUniverse() {
 		
+	}
+	
+	public UserUniverse(UserUniverseKey key, AccessRight accessRight) {
+		this.id = key;
+		this.accessRight = accessRight;
 	}
 	
 	public AccessRight getAccessRight() {

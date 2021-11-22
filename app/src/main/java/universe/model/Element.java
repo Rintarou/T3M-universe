@@ -32,12 +32,12 @@ public abstract class Element {
     private String description;
     //TODO: private Float date;
 
-    @Column( name = "unique" )
+    @Column( name = "unique_" )
     private Boolean unique;
 
-    @OneToMany( mappedBy = "parent", fetch = FetchType.LAZY )
+    @OneToMany( mappedBy = "id.parent", fetch = FetchType.LAZY )
     private Set<Relation> parentElements;
-    @OneToMany( mappedBy = "child", fetch = FetchType.LAZY )
+    @OneToMany( mappedBy = "id.child", fetch = FetchType.LAZY )
     private Set<Relation> childElements;
     @ManyToOne
     @JoinColumn(name = "universe_id", foreignKey = @ForeignKey (name ="universe_elements_id_fk"))

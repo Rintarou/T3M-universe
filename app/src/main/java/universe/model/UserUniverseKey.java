@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Embeddable;
+import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -11,10 +12,10 @@ import javax.persistence.ManyToOne;
 public class UserUniverseKey implements Serializable {
 	
 	@ManyToOne
-	@JoinColumn(name = "user_universe_user_id")
+	@JoinColumn(name = "user_universe_user_id", foreignKey = @ForeignKey( name = "user_universe_user_id_fk"))
 	private User user;
 	@ManyToOne
-	@JoinColumn(name = "user_universe_universe_id")
+	@JoinColumn(name = "user_universe_universe_id", foreignKey = @ForeignKey( name = "user_universe_universe_id_fk"))
 	private Universe universe;
 	
 	public UserUniverseKey() {

@@ -11,18 +11,21 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name = "user_")
-@SequenceGenerator(name = "seqUser", sequenceName = "seq_user", allocationSize = 1, initialValue = 100)
+@Table(name = "users")
+@SequenceGenerator(name = "seqUsers", sequenceName = "seq_users", allocationSize = 1, initialValue = 100)
 public class User {
 	@Id
 	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqUser")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqUsers")
 	private Long id;
 	@Column(name = "login", length = 100)
+	@NotEmpty
 	private String login;
 	@Column(name = "password", length = 100)
+	@NotEmpty
 	private String password;
 	@OneToMany(mappedBy = "id.user")
 	private List<UserUniverse> userUniverses;
