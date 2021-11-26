@@ -10,7 +10,7 @@ public class ElementService {
     @Autowired
     private ElementRepository elementRepository;
 
-    public void delete( Element element ) {
+    public void delete( Element element ) throws Exception {
         
 		Element e = elementRepository.findById( element.getId() ).orElseThrow(Exception::new);
 		//elementRepository.removeClientFromCommandeByClient(e);
