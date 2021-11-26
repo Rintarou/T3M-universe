@@ -16,7 +16,7 @@ public interface RelationRepository extends JpaRepository<Relation, RelationKey>
 
     @Transactional
     @Modifying
-    @Query("delete from Relation r where r.child=:element or r.parent=:element")
+    @Query("delete from Relation r where r.id.child=:element or r.id.parent=:element")
     void deleteRelationByElement( @Param("element") Element element );
 
     //@Query("select r from Relation r where r.natures.contains(:nature)")

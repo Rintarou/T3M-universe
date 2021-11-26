@@ -27,7 +27,7 @@ public class UserServiceTest {
 		userService.save(user1);
 	}
 	
-	@Test
+	//@Test
 	public void testDelete() {
 		userService.delete(userService.byId(101L));
 	}
