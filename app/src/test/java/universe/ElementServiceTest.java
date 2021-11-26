@@ -10,10 +10,15 @@ import universe.config.AppConfig;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AppConfig.class})
-public class AppTest {
+public class ElementServiceTest {
+
+    @Test
+    public void test() {
+        
+    }
+    
+}
+
 
 	
-	@Test
-	public void test() {
-	}
-}
+
