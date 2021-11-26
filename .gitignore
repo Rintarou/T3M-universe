@@ -1,5 +1,5 @@
-app/target/
-app/.project
-app/.settings/
+*/target/
+*/.project
+*/.settings/
 .vscode
-app/.project
+*/.project
