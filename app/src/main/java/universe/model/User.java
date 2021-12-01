@@ -13,6 +13,10 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+import org.springframework.data.web.JsonPath;
+
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "users")
 @SequenceGenerator(name = "seqUsers", sequenceName = "seq_users", allocationSize = 1, initialValue = 100)
@@ -21,17 +25,21 @@ public class User {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqUsers")
+	@JsonView(JsonViews.Common.class)
 	private Long id;
 
 	@Column(name = "login", length = 100)
 	@NotEmpty
+	@JsonView(JsonViews.Common.class)
 	private String login;
 
 	@Column(name = "password", length = 100)
 	@NotEmpty
+	@JsonView(JsonViews.Common.class)
 	private String password;
 	
 	@OneToMany(mappedBy = "id.user")
+	//rajouter requête pour remonter la liste des univers + créer projection
 	private List<UserUniverse> userUniverses;
 	
 	public User(){
