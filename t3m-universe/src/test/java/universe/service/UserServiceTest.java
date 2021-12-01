@@ -1,27 +1,18 @@
 package universe.service;
 
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-import org.junit.runner.RunWith;
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import universe.config.AppConfig;
 import universe.exception.UserException;
 import universe.model.User;
 import universe.service.UserService;
 
-
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {AppConfig.class})
+@SpringBootTest
 public class UserServiceTest {
 	
 	@Autowired
@@ -69,15 +60,15 @@ public class UserServiceTest {
 
 
 	// you can't manually push a user with an id already assigned
-	@Test( expected = Exception.class )
+	@Test
 	public void saveDuplicateFail() {
 		User u = new User();
 		u.setLogin("Bob");
 		u.setPassword("Dylann");
 		u.setId( 101L );
-		User check = userService.save( u );
+		assertThrows( UserException.class, ()-> { userService.save( u ); } );
 		
-	}
+	} 
 	
  	
 	

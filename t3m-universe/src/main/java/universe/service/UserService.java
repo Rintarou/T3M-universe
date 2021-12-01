@@ -44,8 +44,8 @@ public class UserService {
 		return userRepository.findById(id).orElseThrow(UserException::new);
 	}
 	
-	public User byName( String name ) {
-		return userRepository.findByName( name ).orElseThrow( UserException::new );
+	public List<User> byLogin( String name ) {
+		return userRepository.findByLogin( name );
 	}
 
 	public List<User> allUser() {

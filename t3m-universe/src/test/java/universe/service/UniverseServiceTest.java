@@ -1,16 +1,9 @@
 package universe.service;
 
+import static org.junit.jupiter.api.Assertions.*;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import universe.config.AppConfig;
 import universe.model.AccessRight;
 import universe.model.Universe;
 import universe.model.User;
@@ -20,8 +13,6 @@ import universe.service.UniverseService;
 import universe.service.UserService;
 
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {AppConfig.class})
 public class UniverseServiceTest {
 	
 	@Autowired
