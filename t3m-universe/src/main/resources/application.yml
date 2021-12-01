@@ -1,0 +1,28 @@
+server:
+  error:
+    include-message: always
+  servlet:
+    context-path: /universe
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/t3m_universe
+    username: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL10Dialect
+        format_sql: true
+        show_sql: true
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .html
+logging:
+  level:
+    root: ERROR
+  file:
+    name: logs.log
