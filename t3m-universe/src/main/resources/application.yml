@@ -23,6 +23,6 @@ spring:
       suffix: .html
 logging:
   level:
-    root: ERROR
-  file:
-    name: logs.log
+    root: INFO
+#  file:
+#    name: logs.log

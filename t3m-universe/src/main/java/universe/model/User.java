@@ -38,12 +38,20 @@ public class User {
 	@JsonView(JsonViews.Common.class)
 	private String password;
 	
+	@Column(name="enable", nullable = false)
+	private boolean enable;
+	
 	@OneToMany(mappedBy = "id.user")
-	//rajouter requête pour remonter la liste des univers + créer projection
+	@JsonView(JsonViews.UserWithUniverses.class)
 	private List<UserUniverse> userUniverses;
 	
 	public User(){
 		
+	}
+	
+	public User(String login, String password) {
+		this.login=login;
+		this.password=password;
 	}
 
 	public Long getId() {
@@ -68,6 +76,14 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public boolean isEnable() {
+		return enable;
+	}
+
+	public void setEnable(boolean enable) {
+		this.enable = enable;
 	}
 
 	public List<UserUniverse> getUserUniverses() {

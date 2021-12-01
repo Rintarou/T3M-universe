@@ -16,6 +16,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "universes")
 @SequenceGenerator(name = "seqUniverses", sequenceName = "seq_universes", allocationSize = 1, initialValue = 100)
@@ -28,9 +30,11 @@ public class Universe {
 
 	@Column(name = "name", length = 100)
 	@NotEmpty
+	@JsonView(JsonViews.Common.class)
 	private String name;
 
 	@OneToMany(mappedBy = "id.universe")
+	@JsonView(JsonViews.UniverseWithUsers.class)
 	private List<UserUniverse> userUniverses = new ArrayList<UserUniverse>();
 
 	@OneToMany(mappedBy = "universe", fetch = FetchType.LAZY)

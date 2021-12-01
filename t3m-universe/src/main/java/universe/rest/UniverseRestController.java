@@ -20,47 +20,46 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import universe.model.JsonViews;
-import universe.model.User;
-import universe.service.UserService;
+import universe.model.Universe;
+import universe.service.UniverseService;
 
 @RestController
-@RequestMapping("/api/user")
-public class UserRestController {
-
+@RequestMapping("/api/universe")
+public class UniverseRestController {
 	@Autowired
-	private UserService userService;
+	private UniverseService universeService;
 	
 	@GetMapping("")
 	@JsonView(JsonViews.Common.class)
-	public List<User> all(){
-		return userService.allUser();
+	public List<Universe> all(){
+		return universeService.allUniverse();
 	}
 	
 	@GetMapping("/{id}")
-	@JsonView(JsonViews.UserWithUniverses.class)
-	public User byId(@PathVariable("id") Long id) {
-		return userService.byIdWithUniverses(id);
+	@JsonView(JsonViews.UniverseWithUsers.class)
+	public Universe byId(@PathVariable("id") Long id) {
+		return universeService.byId(id);
 	}
 	
 	@PostMapping("")
 	@JsonView(JsonViews.Common.class)
 	@ResponseStatus(code=HttpStatus.CREATED)
-	public User create(@Valid @RequestBody User user, BindingResult br) {
-		return userService.save(user);
+	public Universe create(@Valid @RequestBody Universe universe, BindingResult br) {
+		universeService.save(universe);
+		return universe;
 	}
 	
 	@PutMapping("/{id}")
 	@JsonView(JsonViews.Common.class)
-	public User update(@Valid @PathVariable("id") Long id, @RequestBody User user, BindingResult br) {
-		user.setId(id);
-		return userService.save(user);
+	public Universe update(@Valid @PathVariable("id") Long id, @RequestBody Universe universe, BindingResult br) {
+		universe.setId(id);
+		universeService.save(universe);
+		return universe;
 	}
 	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(code=HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable("id") Long id) {
-		userService.delete(userService.byId(id));
+		universeService.delete(universeService.byId(id));
 	}
-	
-	
 }

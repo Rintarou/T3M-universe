@@ -8,6 +8,7 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import universe.exception.UserException;
 import universe.model.User;
@@ -22,10 +23,15 @@ public class UserService {
 	@Autowired
 	private UserUniverseRepository userUniverseRepository;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	public User save(User user) {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 		Set<ConstraintViolation<User>> violations = validator.validate(user);
 		if (violations.isEmpty()) {
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
+			user.setEnable(true);
 			return userRepository.save(user);
 		}else {
 			throw new UserException();
@@ -45,12 +51,20 @@ public class UserService {
 	}
 	
 	public List<User> byLogin( String name ) {
-		return userRepository.findByLogin( name );
+		return userRepository.findByLoginContaining( name );
 	}
 
 	public List<User> allUser() {
 		return userRepository.findAll();
 	}
 	
+	public User byIdWithUniverses(Long id) {
+		return userRepository.findByIdWithUniverses(id).orElseThrow(UserException::new);
+	}
+	
+	public List<User> allUserWithUniverses() {
+		return userRepository.findAllWithUniverses();
+	}
+
 	
 }

@@ -9,15 +9,19 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "user_universes")
 public class UserUniverse {
 
 	@EmbeddedId
+	@JsonView(JsonViews.Common.class)
 	private UserUniverseKey id;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "access_right", length = 30)
+	@JsonView(JsonViews.Common.class)
 	private AccessRight accessRight;
 	
 	public UserUniverse() {
