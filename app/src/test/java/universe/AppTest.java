@@ -1,5 +1,7 @@
 package universe;
 
+import static org.junit.Assert.assertNull;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -15,5 +17,6 @@ public class AppTest {
 	
 	@Test
 	public void test() {
+		assertNull(null);
 	}
 }

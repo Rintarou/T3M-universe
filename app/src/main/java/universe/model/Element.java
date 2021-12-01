@@ -28,8 +28,10 @@ public abstract class Element {
     //@GeneratedValue
     @Column( name = "id" )
     private Long id;
+
     @Column( name = "name" )
     private String name;
+
     @Column( name = "description" )
     private String description;
     //TODO: private Float date;
@@ -39,8 +41,10 @@ public abstract class Element {
 
     @OneToMany( mappedBy = "id.parent", fetch = FetchType.LAZY )
     private Set<Relation> parentElements;
+
     @OneToMany( mappedBy = "id.child", fetch = FetchType.LAZY )
     private Set<Relation> childElements;
+    
     @ManyToOne
     @JoinColumn(name = "universe_id", foreignKey = @ForeignKey (name ="universe_elements_id_fk"))
     private Universe universe;

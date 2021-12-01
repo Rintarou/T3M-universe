@@ -20,15 +20,19 @@ import javax.validation.constraints.NotEmpty;
 @Table(name = "universes")
 @SequenceGenerator(name = "seqUniverses", sequenceName = "seq_universes", allocationSize = 1, initialValue = 100)
 public class Universe {
+
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqUniverses")
 	private Long id;
+
 	@Column(name = "name", length = 100)
 	@NotEmpty
 	private String name;
+
 	@OneToMany(mappedBy = "id.universe")
 	private List<UserUniverse> userUniverses = new ArrayList<UserUniverse>();
+
 	@OneToMany(mappedBy = "universe", fetch = FetchType.LAZY)
 	private Set<Element> elements;
 	
@@ -51,8 +55,6 @@ public class Universe {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	
 
 	public List<UserUniverse> getUserUniverses() {
 		return userUniverses;
@@ -89,9 +91,7 @@ public class Universe {
 			if (i < userUniverses.size()) {
 				userUniverses.get(i).setAccessRight(accessRight);
 			}
-			
 		}
-		
 	}
 	
 	public void addUser(User user, AccessRight accessRight) {

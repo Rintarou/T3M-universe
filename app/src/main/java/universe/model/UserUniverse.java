@@ -12,8 +12,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "user_universes")
 public class UserUniverse {
+
 	@EmbeddedId
 	private UserUniverseKey id;
+	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "access_right", length = 30)
 	private AccessRight accessRight;

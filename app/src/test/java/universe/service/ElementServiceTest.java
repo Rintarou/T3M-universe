@@ -1,4 +1,6 @@
-package universe;
+package universe.service;
+
+import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +16,7 @@ public class ElementServiceTest {
 
     @Test
     public void test() {
-        
+        assertNull(null);
     }
     
 }

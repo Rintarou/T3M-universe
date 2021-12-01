@@ -14,13 +14,13 @@ import universe.model.RelationKey;
 
 public interface RelationRepository extends JpaRepository<Relation, RelationKey>{
 
-    @Transactional
-    @Modifying
-    @Query("delete from Relation r where r.child=:element or r.parent=:element")
-    void deleteRelationByElement( @Param("element") Element element );
+    // @Transactional
+    // @Modifying
+    // @Query("delete from Relation r where r.child=:element or r.parent=:element")
+    // void deleteRelationByElement( @Param("element") Element element );
 
     //@Query("select r from Relation r where r.natures.contains(:nature)")
-    Set<Relation> findByNatures( @Param("nature") String nature );
+    //Set<Relation> findByNatures( @Param("nature") String nature );
 
     
 }

@@ -22,15 +22,17 @@ public class UserService {
 	@Autowired
 	private UserUniverseRepository userUniverseRepository;
 	
-	public void save(User user) {
+	public User save(User user) {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 		Set<ConstraintViolation<User>> violations = validator.validate(user);
 		if (violations.isEmpty()) {
-			userRepository.save(user);
+			return userRepository.save(user);
 		}else {
 			throw new UserException();
 		}
 	}
+
+	
 	
 	public void delete(User user) {
 		User userInBase = byId(user.getId());
@@ -42,6 +44,10 @@ public class UserService {
 		return userRepository.findById(id).orElseThrow(UserException::new);
 	}
 	
+	public User byName( String name ) {
+		return userRepository.findByName( name ).orElseThrow( UserException::new );
+	}
+
 	public List<User> allUser() {
 		return userRepository.findAll();
 	}

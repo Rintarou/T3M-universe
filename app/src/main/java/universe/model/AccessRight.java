@@ -5,7 +5,6 @@ public enum AccessRight {
 	
 	private String accessRight;
 	
-	
 	private AccessRight() {
 		
 	}
@@ -13,6 +12,7 @@ public enum AccessRight {
 	private AccessRight(String accessRight){
 		this.accessRight=accessRight;
 	}
+	
 	public String getAccessRight() {
 		return this.accessRight;
 	}

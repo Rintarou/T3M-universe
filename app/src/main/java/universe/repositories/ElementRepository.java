@@ -13,24 +13,24 @@ import universe.model.Element;
 
 public interface ElementRepository extends JpaRepository<Element, Long> {
 
-    @Query("select e from Element where e.id=:id")
-    Optional<Element> findById( @Param("id") Long id );
+    // @Query("select e from Element where e.id=:id")
+    // Optional<Element> findById( @Param("id") Long id );
 
-    @Query("select e from Element where e.name=:name")
-    Set<Element> findByName( @Param("name") String name );
+    // @Query("select e from Element where e.name=:name")
+    // Set<Element> findByName( @Param("name") String name );
 
-    // @Query("from :Class")
-    // Set<? extends Element> findByType( @Param("Class") String s );
+    // // @Query("from :Class")
+    // // Set<? extends Element> findByType( @Param("Class") String s );
 
-    @Transactional
-    @Modifying
-    @Query("delete from Element e where e=:element")
-    void delete( @Param("element") Element element );
+    // @Transactional
+    // @Modifying
+    // @Query("delete from Element e where e=:element")
+    // void delete( @Param("element") Element element );
     
-    @Transactional
-    @Modifying
-    @Query("delete from Element e where e.id =:id")
-    void deleteById( @Param("id") Long id );
+    // @Transactional
+    // @Modifying
+    // @Query("delete from Element e where e.id =:id")
+    // void deleteById( @Param("id") Long id );
 
     
 }
