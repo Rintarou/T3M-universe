@@ -15,6 +15,8 @@ import javax.validation.constraints.NotEmpty;
 
 import org.springframework.data.web.JsonPath;
 
+import universe.exception.UserException;
+
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
@@ -50,8 +52,13 @@ public class User {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	//@Once
+	public void setId(Long id) throws UserException {
+		if( this.id == null ) { 
+			this.id = id;
+		} else {
+			throw new UserException("Id is already set");
+		}
 	}
 
 	public String getLogin() {

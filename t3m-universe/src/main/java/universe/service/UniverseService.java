@@ -26,20 +26,23 @@ public class UniverseService {
 	@Autowired
 	private UserUniverseRepository userUniverseRepository;
 	
-	public void save(Universe universe) {
+	public Universe save( Universe universe ) {
+		Universe ret = null;
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 		Set<ConstraintViolation<Universe>> violations = validator.validate(universe);
 		if (violations.isEmpty()) {
 			
-			if (universe.getUserUniverses() != null) {
-				universe.getUserUniverses().forEach(uu -> {
+			List<UserUniverse> userUniverses = universe.getUserUniverses(); 
+			if (userUniverses != null) {
+				userUniverses.forEach( uu -> {
 					userUniverseRepository.save(uu);
-				});
+				} );
 			}
-			universeRepository.save(universe);
-		}else {
+			ret = universeRepository.save(universe);
+		} else {
 			throw new UniverseException();
 		}
+		return ret;
 	}
 	
 	public void delete(Universe universe) {

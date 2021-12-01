@@ -11,7 +11,7 @@ spring:
     username: postgres
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQL10Dialect
@@ -23,6 +23,6 @@ spring:
       suffix: .html
 logging:
   level:
-    root: ERROR
-  file:
-    name: logs.log
+    root: INFO
+  # file:
+  #   name: logs.log

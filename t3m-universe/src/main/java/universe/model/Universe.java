@@ -16,6 +16,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+import universe.exception.UniverseException;
+
 @Entity
 @Table(name = "universes")
 @SequenceGenerator(name = "seqUniverses", sequenceName = "seq_universes", allocationSize = 1, initialValue = 100)
@@ -44,8 +46,12 @@ public class Universe {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setId( Long id ) throws UniverseException {
+		if( this.id == null) {
+			this.id = id;
+		} else {
+			throw new UniverseException("Id is already set");
+		}
 	}
 
 	public String getName() {
