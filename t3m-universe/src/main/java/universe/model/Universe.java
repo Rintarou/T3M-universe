@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 import universe.exception.UniverseException;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name = "universes")
@@ -30,9 +31,11 @@ public class Universe {
 
 	@Column(name = "name", length = 100)
 	@NotEmpty
+	@JsonView(JsonViews.Common.class)
 	private String name;
 
 	@OneToMany(mappedBy = "id.universe")
+	@JsonView(JsonViews.UniverseWithUsers.class)
 	private List<UserUniverse> userUniverses = new ArrayList<UserUniverse>();
 
 	@OneToMany(mappedBy = "universe", fetch = FetchType.LAZY)
