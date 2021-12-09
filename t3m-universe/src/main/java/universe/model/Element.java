@@ -55,6 +55,7 @@ public class Element {
     
     @ManyToOne
     @JoinColumn(name = "universe_id", foreignKey = @ForeignKey (name ="universe_elements_id_fk"))
+    @JsonView(JsonViews.ElementWithUniverse.class)
     private Universe universe;
     
     
@@ -113,6 +114,10 @@ public class Element {
 
     public Long getId() {
         return id;
+    }
+    
+    public void setId(Long id) {
+    	this.id=id;
     }
 
     @Override

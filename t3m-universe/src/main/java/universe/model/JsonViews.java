@@ -12,4 +12,7 @@ public class JsonViews {
 	public static class UniverseWithUsers extends Common{
 		
 	}
+	public static class ElementWithUniverse extends Common{
+		
+	}
 }

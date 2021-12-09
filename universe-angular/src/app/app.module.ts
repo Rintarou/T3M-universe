@@ -9,20 +9,17 @@ import { RouterModule } from '@angular/router';
 
 import { routes } from './routes';
 import { ElementEditorComponent } from './components/element-editor/element-editor.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ElementComponent,
-    ElementEditorComponent
-  ],
+  declarations: [AppComponent, ElementComponent, ElementEditorComponent, LoginComponent],
   imports: [
-    BrowserModule, 
+    BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot( routes )
+    RouterModule.forRoot(routes),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import universe.exception.ElementException;
 import universe.model.Element;
+import universe.model.Universe;
 import universe.repository.ElementRepository;
+import universe.repository.RelationRepository;
 
 
 /**
@@ -27,11 +29,16 @@ public class ElementService {
     
     @Autowired
     private ElementRepository elementRepository;
+    @Autowired
+    private RelationRepository relationRepository;
 
-    public void delete( Element element ) throws Exception {
+    public void delete( Element element ) { //throws Exception
         
-		Element e = elementRepository.findById( element.getId() ).orElseThrow(Exception::new);
-		elementRepository.delete(e);
+//		Element e = elementRepository.findById( element.getId() ).orElseThrow(Exception::new);
+//		elementRepository.delete(e);
+    	Element elementEnBase = byId(element.getId());
+    	relationRepository.deleteRelationByElement(elementEnBase);
+    	elementRepository.delete(elementEnBase);
 	}
 
     public Element save( Element element ) {
@@ -39,6 +46,8 @@ public class ElementService {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 		Set<ConstraintViolation<Element>> violations = validator.validate( element );
 		if( violations.isEmpty() ) {
+			// save les relations
+			// save l'univers ?
 			ret = elementRepository.save( element );
 		} else {
 			throw new ElementException();
@@ -47,7 +56,11 @@ public class ElementService {
     }
 
 	public Element byId( Long id ) {
-		return elementRepository.findById( id ).orElseThrow( ElementException::new );
+		return elementRepository.findByIdWithParentAndChild( id ).orElseThrow( ElementException::new );
+	}
+	
+	public Set<Element> byUniverse(Universe universe) {
+		return elementRepository.findByUniverse(universe);
 	}
     
 }
