@@ -16,6 +16,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+import universe.exception.LimitedAssignationException;
 import universe.exception.UniverseException;
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -49,11 +50,11 @@ public class Universe {
 		return id;
 	}
 
-	public void setId( Long id ) throws UniverseException {
+	public void setId( Long id ) throws LimitedAssignationException {
 		if( this.id == null) {
 			this.id = id;
 		} else {
-			throw new UniverseException("Id is already set");
+			throw new LimitedAssignationException("Id is already set");
 		}
 	}
 

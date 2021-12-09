@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import universe.exception.LimitedAssignationException;
 import universe.exception.UniverseException;
 import universe.model.AccessRight;
 import universe.model.Universe;
@@ -60,7 +61,7 @@ public class UniverseServiceTest {
 		duplicate.setName("Myst");
 		Universe check = universeService.save( duplicate );
 
-		assertThrows( UniverseException.class, ()->{ check.setId( u.getId() ); } );
+		assertThrows( LimitedAssignationException.class, ()->{ check.setId( u.getId() ); } );
 	} 
 
 	// when a universe is deleted it should no longer be in the database

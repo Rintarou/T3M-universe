@@ -9,6 +9,8 @@ import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -18,25 +20,31 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table( name = "elements" )
 @Inheritance( strategy = InheritanceType.SINGLE_TABLE )
 @DiscriminatorColumn( name = "type", discriminatorType = DiscriminatorType.STRING, length = 20 )
 @SequenceGenerator( name = "seqElements", sequenceName = "seq_elements", allocationSize = 1, initialValue = 50 )
-public abstract class Element {
+public class Element {
     @Id
-    //@GeneratedValue
+    @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "seqElements" )
     @Column( name = "id" )
+    @JsonView(JsonViews.Common.class)
     private Long id;
 
     @Column( name = "name" )
+    @JsonView(JsonViews.Common.class)
     private String name;
 
     @Column( name = "description" )
+    @JsonView(JsonViews.Common.class)
     private String description;
     //TODO: private Float date;
 
     @Column( name = "unique_" )
+    @JsonView(JsonViews.Common.class)
     private Boolean unique;
 
     @OneToMany( mappedBy = "id.parent", fetch = FetchType.LAZY )
@@ -81,6 +89,10 @@ public abstract class Element {
 
     public String getName() {
         return name;
+    }
+
+    public void setName( String name ) {
+        this.name = name;
     }
 
     public String getDescription() {

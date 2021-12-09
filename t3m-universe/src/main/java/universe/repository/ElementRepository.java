@@ -11,11 +11,11 @@ import universe.model.Element;
 
 public interface ElementRepository extends JpaRepository<Element, Long> {
 
-    @Query("select e from Element e where e.id=:id")
-    Optional<Element> findById( @Param("id") Long id );
+    // @Query("select e from Element e left join fetch e.parentElements left join fetch e.childElement where e.id=:id")
+    // Optional<Element> findById( @Param("id") Long id );
 
-    @Query("select e from Element e where e.name=:name")
-    Set<Element> findByName( @Param("name") String name );
+    // @Query("select e from Element e where e.name=:name")
+    // Set<Element> findByName( @Param("name") String name );
 
     // // @Query("from :Class")
     // // Set<? extends Element> findByType( @Param("Class") String s );

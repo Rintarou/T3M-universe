@@ -40,7 +40,7 @@ public class UserService {
 			return ret;
 	}
 	
-	public void delete(User user) {
+	public void delete( User user ) {
 		User userInBase = byId(user.getId());
 		userUniverseRepository.deleteByUser(userInBase);
 		userRepository.delete(userInBase);

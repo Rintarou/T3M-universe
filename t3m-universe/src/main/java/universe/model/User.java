@@ -15,6 +15,7 @@ import javax.validation.constraints.NotEmpty;
 
 import org.springframework.data.web.JsonPath;
 
+import universe.exception.LimitedAssignationException;
 import universe.exception.UserException;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -61,11 +62,11 @@ public class User {
 	}
 
 	//@Once
-	public void setId(Long id) throws UserException {
+	public void setId(Long id) throws LimitedAssignationException {
 		if( this.id == null ) { 
 			this.id = id;
 		} else {
-			throw new UserException("Id is already set");
+			throw new LimitedAssignationException("Id is already set");
 		}
 	}
 

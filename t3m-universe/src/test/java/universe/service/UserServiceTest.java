@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import universe.exception.LimitedAssignationException;
 import universe.exception.UserException;
 import universe.model.User;
 import universe.service.UserService;
@@ -58,7 +59,7 @@ public class UserServiceTest {
 		duplicate.setPassword("Doe");
 		User check = userService.save( duplicate );
 
-		assertThrows( UserException.class, ()->{ check.setId( u.getId() ); } );
+		assertThrows( LimitedAssignationException.class, ()->{ check.setId( u.getId() ); } );
 
 		userService.save( check );
 		assertNotEquals( u, check );
