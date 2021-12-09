@@ -31,14 +31,15 @@ public class UniverseService {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 		Set<ConstraintViolation<Universe>> violations = validator.validate(universe);
 		if (violations.isEmpty()) {
-			
-			List<UserUniverse> userUniverses = universe.getUserUniverses(); 
-			if (userUniverses != null) {
-				userUniverses.forEach( uu -> {
-					userUniverseRepository.save(uu);
-				} );
-			}
 			ret = universeRepository.save(universe);
+			userUniverseRepository.saveAll(universe.getUserUniverses());
+//			List<UserUniverse> userUniverses = universe.getUserUniverses(); 
+//			if (userUniverses != null) {
+//				userUniverses.forEach( uu -> {
+//					userUniverseRepository.save(uu);
+//				} );
+//			}
+			
 		} else {
 			throw new UniverseException();
 		}

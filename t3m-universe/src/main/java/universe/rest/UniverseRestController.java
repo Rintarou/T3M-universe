@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import universe.model.AccessRight;
 import universe.model.JsonViews;
 import universe.model.Universe;
 import universe.service.UniverseService;
+import universe.service.auth.CustomUserDetails;
 
 @RestController
 @RequestMapping("/api/universe")
@@ -44,7 +47,8 @@ public class UniverseRestController {
 	@PostMapping("")
 	@JsonView(JsonViews.Common.class)
 	@ResponseStatus(code=HttpStatus.CREATED)
-	public Universe create(@Valid @RequestBody Universe universe, BindingResult br) {
+	public Universe create(@Valid @RequestBody Universe universe, BindingResult br, @AuthenticationPrincipal CustomUserDetails cUD) {
+		universe.addUser(cUD.getUser(), AccessRight.owner);
 		universeService.save(universe);
 		return universe;
 	}

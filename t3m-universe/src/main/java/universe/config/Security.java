@@ -41,9 +41,9 @@ public class Security extends WebSecurityConfigurerAdapter {
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			.and()
 			.authorizeRequests()
-				.anyRequest().permitAll()
-				//.antMatchers(HttpMethod.POST,"/api/user").permitAll()
-				//.antMatchers("/api/**").hasRole("USER")
+				.antMatchers(HttpMethod.POST,"/api/user").permitAll()
+				.antMatchers("/api/**").authenticated()
+//				.antMatchers("/api/**").hasRole("USER")
 			.and()
 			.httpBasic();
 				

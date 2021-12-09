@@ -13,7 +13,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> findByLoginContaining( String login );
     
-    Optional<User> findByLogin( String login );
+    //Optional<User> findByLogin( String login );
+    
+    @Query("select u from User u left join fetch u.userUniverses where u.login=:login")
+    Optional<User> findByLoginWithUserUniverses( String login );
     
     @Query("select u from User u left join fetch u.userUniverses")
     List<User> findAllWithUniverses();

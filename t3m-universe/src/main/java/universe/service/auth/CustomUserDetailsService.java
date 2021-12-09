@@ -16,7 +16,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		return new CustomUserDetails(userRepository.findByLogin(username).orElseThrow(() -> {
+		return new CustomUserDetails(userRepository.findByLoginWithUserUniverses(username).orElseThrow(() -> {
 			throw new UsernameNotFoundException("utilisateur inconnu");
 		}));
 	}
