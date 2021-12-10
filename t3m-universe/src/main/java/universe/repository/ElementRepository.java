@@ -18,7 +18,7 @@ public interface ElementRepository extends JpaRepository<Element, Long> {
     @Query("select e from Element e left join fetch e.parentElements left join fetch e.childElements where e.id=:id")
     Optional<Element> findByIdWithParentAndChild( @Param("id") Long id );
 
-    @Query("select e from Element e where e.name=:name")
+    //@Query("select e from Element e where e.name=:name")
     Set<Element> findByName( @Param("name") String name );
     
     Set<Element> findByUniverse(Universe universe);

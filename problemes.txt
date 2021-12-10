@@ -1,0 +1,14 @@
+ELEMENT (java):
+	- rajouter validator
+	- save les relations avant de save l'élément
+	- méthodes pour ajouter une relation entre deux éléments
+	- JsonView sur l'id
+	- pas de setId()
+	- lors d'un update, l'univers reste le même, pas besoin de le specifier
+	- nom de l'url pour findAllByUniverse
+	- delete throws Exception
+	- les relations sont toujours dans les deux sens?
+	- colonne type : Element par defaut
+
+ANGULAR:
+	- Stocker la liste des univers en session

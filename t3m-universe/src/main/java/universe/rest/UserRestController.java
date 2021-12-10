@@ -62,5 +62,11 @@ public class UserRestController {
 		userService.delete(userService.byId(id));
 	}
 	
+	@GetMapping("/login/{login}")
+	@JsonView(JsonViews.Common.class)
+	public boolean byLogin(@PathVariable("login") String login){
+		return userService.byLogin(login);
+	}
+	
 	
 }

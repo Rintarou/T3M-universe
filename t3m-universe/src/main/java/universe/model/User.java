@@ -28,7 +28,7 @@ public class User {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqUsers")
-	@JsonView(JsonViews.Common.class)
+	//@JsonView(JsonViews.Common.class)
 	private Long id;
 
 	@Column(name = "login", length = 100)

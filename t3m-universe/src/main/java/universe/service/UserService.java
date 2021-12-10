@@ -50,8 +50,8 @@ public class UserService {
 		return userRepository.findById(id).orElseThrow(UserException::new);
 	}
 	
-	public List<User> byLogin( String name ) {
-		return userRepository.findByLoginContaining( name );
+	public boolean byLogin( String name ) {
+		return userRepository.findByLogin( name ).isPresent();
 	}
 
 	public List<User> allUser() {
