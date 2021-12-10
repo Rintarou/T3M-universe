@@ -27,7 +27,11 @@ export class UserService {
   }
 
   insert(user: User): Observable<User> {
-    return this.http.post<User>(this.url, user);
+    const o = {
+      login: user.login,
+      password: user.password,
+    };
+    return this.http.post<User>(this.url, o);
   }
 
   update(user: User): Observable<User> {
