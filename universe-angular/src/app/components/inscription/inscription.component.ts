@@ -1,6 +1,13 @@
 import { User } from './../../model/user';
-import { Observable, timer } from 'rxjs';
-import { debounceTime, map, distinctUntilChanged, delay } from 'rxjs/operators';
+import { Observable, timer, of, catchError } from 'rxjs';
+import {
+  debounceTime,
+  map,
+  distinctUntilChanged,
+  delay,
+  first,
+  switchMap,
+} from 'rxjs/operators';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import {
@@ -37,7 +44,7 @@ export class InscriptionComponent implements OnInit {
         this.checkNotEquals
       ),
     });
-    //this.form.controls['login'].updateOn = 'blur';
+    this.form.controls['login'].valueChanges.subscribe();
   }
 
   ngOnInit(): void {}
@@ -54,15 +61,14 @@ export class InscriptionComponent implements OnInit {
   }
 
   checkLogin(): AsyncValidatorFn {
-    return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      return this.userService.checkLogin(control.value).pipe(
+    return (control) =>
+      control.valueChanges.pipe(
         debounceTime(1000),
         distinctUntilChanged(),
-        map((res: boolean) => {
-          return res ? { loginUsed: true } : null;
-        })
-      );
-    };
+        switchMap((value) => this.userService.checkLogin(value)),
+        map((unique: boolean) => (unique ? { loginUsed: true } : null)),
+        first()
+      ); // important to make observable finite
   }
 
   checkNotEquals(group: AbstractControl): ValidationErrors | null {
@@ -74,5 +80,21 @@ export class InscriptionComponent implements OnInit {
       formGroup.controls['confirm'].value
       ? { checkNotEquals: true }
       : null;
+  }
+
+  loginErrorMessage() {
+    if (this.form.get('login')!.hasError('required')) {
+      return 'login required';
+    }
+    return 'login already used';
+  }
+
+  passwordErrorMessage() {
+    if (this.form.get('passwordGroup.password')!.hasError('required')) {
+      return 'password required';
+    } else if (this.form.get('passwordGroup.password')!.hasError('pattern')) {
+      return 'the password must contain between 5 and 25 characters, including a capital letter and a number';
+    }
+    return 'passwords are not the same';
   }
 }

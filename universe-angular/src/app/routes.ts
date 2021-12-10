@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  { path: 'home', component: ElementComponent },
+  { path: 'home', component: InscriptionComponent },
   { path: 'login', component: LoginComponent },
   { path: 'inscription', component: InscriptionComponent },
   { path: 'worlds', component: ElementEditorComponent },

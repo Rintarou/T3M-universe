@@ -3,6 +3,12 @@
     <label>login</label>
     <input class="form-control" formControlName="login" />
   </div>
+  <div
+    *ngIf="form.controls['login'].dirty && form.controls['login'].invalid"
+    class="alert alert-danger"
+  >
+    {{ loginErrorMessage() }}
+  </div>
   <ng-container formGroupName="passwordGroup">
     <div class="form-group">
       <label>password</label>
@@ -12,14 +18,23 @@
       <label>confirmation</label>
       <input type="password" class="form-control" formControlName="confirm" />
     </div>
+    <div
+      *ngIf="
+        form.get('passwordGroup')?.invalid &&
+        form.get('passwordGroup.confirm')?.touched
+      "
+      class="alert alert-danger"
+    >
+      {{ passwordErrorMessage() }}
+    </div>
   </ng-container>
   <div>
     <button
       type="submit"
       class="btn btn-outline-success"
-      [disabled]="form.invalid"
+      [disabled]="!form.valid"
     >
-      enregistrer {{ form.invalid }}
+      enregistrer {{ !form.valid }}
     </button>
     <a
       [routerLink]="['/home']"
