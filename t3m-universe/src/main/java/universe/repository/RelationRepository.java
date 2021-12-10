@@ -19,6 +19,9 @@ public interface RelationRepository extends JpaRepository<Relation, RelationKey>
     @Query("delete from Relation r where r.id.child=:element or r.id.parent=:element")
     void deleteRelationByElement( @Param("element") Element element );
 
+    // @Query("select distinct n from Relation r join fetch r.natures n where n=:name )")
+    // Set<String> findMatchingNames( @Param("name") String name );
+
     //@Query("select r from Relation r where r.natures.contains(:nature)")
     //Set<Relation> findByNatures( @Param("nature") String nature );
 

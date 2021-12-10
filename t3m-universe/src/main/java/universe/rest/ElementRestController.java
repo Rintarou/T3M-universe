@@ -27,15 +27,18 @@ import universe.model.Universe;
 import universe.model.Character;
 import universe.model.Element;
 import universe.service.ElementService;
+import universe.service.RelationService;
 import universe.service.UniverseService;
 
 @RestController
 @RequestMapping("/api/element")
 public class ElementRestController {
-    @Autowired
-	private ElementService elementService;
-    @Autowired
+
+	@Autowired
     private UniverseService universeService;
+    
+	@Autowired
+	private ElementService elementService;
 	
 //	@GetMapping("")
 //	@JsonView( JsonViews.Common.class )
@@ -64,7 +67,7 @@ public class ElementRestController {
 //	}
 
 	@GetMapping("/{id}")
-	@JsonView(JsonViews.Common.class)
+	@JsonView( JsonViews.Common.class )
 	public Element byId( @PathVariable("id") Long id ) {
 		return elementService.byId( id );
 	}
@@ -88,9 +91,5 @@ public class ElementRestController {
 	public void delete(@PathVariable("id") Long id) {
 		elementService.delete(elementService.byId(id));
 	}
-	
-	
-	
-	
 	
 }
