@@ -15,7 +15,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.util.matcher.AnyRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -43,9 +42,12 @@ public class Security extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 				.antMatchers(HttpMethod.GET,"/api/user/**").permitAll()
 				.antMatchers(HttpMethod.POST,"/api/user").permitAll()
+				.antMatchers(HttpMethod.POST,"/api/{universe_id}/element").access("@customWebSecurity.checkWrite(authentication,#universe_id)")
+				.antMatchers(HttpMethod.PUT,"/api/{universe_id}/element/{id}").access("@customWebSecurity.checkWrite(authentication,#universe_id)")
+				.antMatchers(HttpMethod.DELETE,"/api/{universe_id}/element/{id}").access("@customWebSecurity.checkWrite(authentication,#universe_id)")
 				.antMatchers("/api/**").authenticated()
 //				.antMatchers("/api/**").hasRole("USER")
-			.and()
+				.and()
 			.httpBasic();
 				
 		// @formatter:on
@@ -72,5 +74,11 @@ public class Security extends WebSecurityConfigurerAdapter {
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
+	
+	@Bean
+	CustomWebSecurity customWebSecurity() {
+		return new CustomWebSecurity();
+	};
+	
 
 }

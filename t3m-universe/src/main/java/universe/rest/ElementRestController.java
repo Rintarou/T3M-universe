@@ -31,7 +31,7 @@ import universe.service.RelationService;
 import universe.service.UniverseService;
 
 @RestController
-@RequestMapping("/api/element")
+@RequestMapping("/api/{universe_id}/element") 
 public class ElementRestController {
 
 	@Autowired
@@ -40,31 +40,13 @@ public class ElementRestController {
 	@Autowired
 	private ElementService elementService;
 	
-//	@GetMapping("")
-//	@JsonView( JsonViews.Common.class )
-//	public Element find() {
-//		Element ret = new Character();
-//
-//		ret.setName("Jester");
-//        ret.setDescription("A blue tiefling cleric, with great humour and personnality");
-//        ret.setUnique( true );
-//
-//        return ret;
-//	}
 	
-	@GetMapping("/byUniverseId/{id}")
+	@GetMapping("")
 	@JsonView( JsonViews.Common.class )
-	public Set<Element> findAllByUniverse(@PathVariable("id") Long id) {
-		return elementService.byUniverse(universeService.byId(id));
+	public Set<Element> findAllByUniverse(@PathVariable("universe_id") Long universe_id) {
+		return elementService.byUniverse(universeService.byId(universe_id));
 	}
 	
-	// fonctionne aussi
-	// mettre un requestBody dans un GetMapping : mauvaise pratique
-//	@GetMapping("/byUniverse")
-//	@JsonView( JsonViews.Common.class )
-//	public Set<Element> findAllByUniverseBis(@Valid @RequestBody Universe universe, BindingResult br) {
-//		return elementService.byUniverse(universe);
-//	}
 
 	@GetMapping("/likeName/{name}")
     @JsonView(JsonViews.Common.class)
@@ -74,14 +56,14 @@ public class ElementRestController {
 
 	@GetMapping("/{id}")
 	@JsonView( JsonViews.Common.class )
-	public Element byId( @PathVariable("id") Long id ) {
+	public Element byId( @PathVariable("id") Long id ) { //@PathVariable("universe_id") Long universe_id,
 		return elementService.byId( id );
 	}
 
 	@PostMapping("")
 	@JsonView( JsonViews.ElementWithUniverse.class )
 	@ResponseStatus( code = HttpStatus.CREATED )
-	public Element create( @Valid @RequestBody Element element, BindingResult br ) {
+	public Element create( @Valid @RequestBody Element element, BindingResult br) {
 		return elementService.save( element );
 	}
 	
