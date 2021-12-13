@@ -21,7 +21,11 @@ public interface ElementRepository extends JpaRepository<Element, Long> {
     //@Query("select e from Element e where e.name=:name")
     Set<Element> findByName( @Param("name") String name );
     
+    Set<Element> findByNameContaining( @Param("name") String name );
+    
     Set<Element> findByUniverse(Universe universe);
+    
+    
 
 //    @Query("from :Class")
 //    Set<? extends Element> findByType( @Param("Class") String s );
