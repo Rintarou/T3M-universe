@@ -18,10 +18,9 @@ public interface ElementRepository extends JpaRepository<Element, Long> {
     @Query("select e from Element e left join fetch e.parentElements left join fetch e.childElements where e.id=:id")
     Optional<Element> findByIdWithParentAndChild( @Param("id") Long id );
 
-    //@Query("select e from Element e where e.name=:name")
-    Set<Element> findByName( @Param("name") String name );
+    Set<Element> findByNameContaining( @Param("name") String name );
     
-    Set<Element> findByUniverse(Universe universe);
+    Set<Element> findByUniverse( Universe universe );
 
 //    @Query("from :Class")
 //    Set<? extends Element> findByType( @Param("Class") String s );
@@ -30,11 +29,5 @@ public interface ElementRepository extends JpaRepository<Element, Long> {
 //    @Modifying
 //    @Query("delete from Element e where e=:element")
 //    void delete( @Param("element") Element element );
-    
-//    @Transactional
-//    @Modifying
-//    @Query("delete from Element e where e.id =:id")
-//    void deleteById( @Param("id") Long id );
-
     
 }

@@ -66,6 +66,12 @@ public class ElementRestController {
 //		return elementService.byUniverse(universe);
 //	}
 
+	@GetMapping("/likeName/{name}")
+    @JsonView(JsonViews.Common.class)
+    public Set<Element> nameMatching( @PathVariable("name") String name ) {
+        return elementService.likeName( name );
+    }
+
 	@GetMapping("/{id}")
 	@JsonView( JsonViews.Common.class )
 	public Element byId( @PathVariable("id") Long id ) {

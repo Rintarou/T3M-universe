@@ -1,5 +1,6 @@
 package universe.repository;
 
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -19,8 +20,22 @@ public interface RelationRepository extends JpaRepository<Relation, RelationKey>
     @Query("delete from Relation r where r.id.child=:element or r.id.parent=:element")
     void deleteRelationByElement( @Param("element") Element element );
 
-    // @Query("select distinct n from Relation r join fetch r.natures n where n=:name )")
-    // Set<String> findMatchingNames( @Param("name") String name );
+    Set<Relation> findByNaturesContaining( @Param("name") String name );
+
+    @Query("select n from Relation r left join r.natures n")
+    Set<Set<String>> findAllNatures();
+
+    //Set<Relation> findAllWithNatures();
+
+    // Optional<Relation> findByParentElement( @Param("element") Element e );
+
+    // Optional<Relation> findByChildElement( @Param("element") Element e );
+
+    // @Query("select r from Relation r join fetch r.natures n where n=:name )")
+    // Set<Relation> findMatchingNames( @Param("name") String name );
+    
+    // @Query("select from Relation r join fetch r.natures n where n=:name )")
+    // Set<Set<String>> findMatchingNames( @Param("name") String name );
 
     //@Query("select r from Relation r where r.natures.contains(:nature)")
     //Set<Relation> findByNatures( @Param("nature") String nature );

@@ -1,5 +1,6 @@
 package universe.service;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -15,15 +16,6 @@ import universe.model.Universe;
 import universe.repository.ElementRepository;
 import universe.repository.RelationRepository;
 
-
-/**
- * ElementService class;
- * wraps ElementRepository and provides a layer of verification
- * 
- * Methods:
- * save, delete, 
- */
-
 @Service
 public class ElementService {
     
@@ -32,14 +24,15 @@ public class ElementService {
     @Autowired
     private RelationRepository relationRepository;
 
-    public void delete( Element element ) { //throws Exception
-        
-//		Element e = elementRepository.findById( element.getId() ).orElseThrow(Exception::new);
-//		elementRepository.delete(e);
+    public void delete( Element element ) {
     	Element elementEnBase = byId(element.getId());
     	relationRepository.deleteRelationByElement(elementEnBase);
     	elementRepository.delete(elementEnBase);
 	}
+
+	public Set<Element> likeName( String name) {
+        return elementRepository.findByNameContaining( name );
+    }
 
     public Element save( Element element ) {
         Element ret = null;

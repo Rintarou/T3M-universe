@@ -38,11 +38,21 @@ public class RelationRestController {
     @Autowired
     private RelationService relationService;
 
+    @Autowired
+    private ElementService elementService;
+
     @GetMapping("/likeName/{name}")
     @JsonView(JsonViews.Common.class)
     public Set<String> relationLabelMatchingName( @PathVariable("name") String name ) {
         return relationService.likeName( name );
     }
+
+    // @GetMapping("/element/{id}")
+    // @JsonView(JsonViews.Common.class)
+    // public Set<Relation> byElement( @PathVariable("id") Long id ) {
+
+    //     return relationService.byElement( elementService.byId( id ) );
+    // }
 
     @PostMapping("")
     @JsonView( JsonViews.Common.class )

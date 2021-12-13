@@ -1,5 +1,6 @@
 package universe.service;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -19,18 +20,26 @@ public class RelationService {
     
     @Autowired
     private RelationRepository relationRepository;
+    
+    public Relation byId( RelationKey id ) {
+        return relationRepository.findById( id ).orElseThrow( RelationException::new );
+    }
 
     public void delete( Relation relation ) {
         relationRepository.delete( relation );
     }
 
-    public Relation byId( RelationKey id ) {
-		return relationRepository.findById( id ).orElseThrow( RelationException::new );
-	}
-
     public Set<String> likeName( String name) {
-        //TODO return relationRepository.findMatchingNames( name );
-        return null;
+        Set<String> ret = new HashSet<String>();
+        Set<Set<String>> allNatures = relationRepository.findAllNatures();
+
+        allNatures.forEach( ( Set<String> n )->{ 
+            n.stream().filter( ( String s )->{ 
+                return s.contains( name ); 
+            } ).forEach( ret::add );
+        } );
+
+        return ret; 
     }
 
     public Relation save( Relation relation ) {
