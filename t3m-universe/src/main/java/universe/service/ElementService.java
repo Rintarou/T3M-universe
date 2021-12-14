@@ -40,7 +40,6 @@ public class ElementService {
 		Set<ConstraintViolation<Element>> violations = validator.validate( element );
 		if( violations.isEmpty() ) {
 			// save les relations
-			// save l'univers ?
 			ret = elementRepository.save( element );
 		} else {
 			throw new ElementException();
