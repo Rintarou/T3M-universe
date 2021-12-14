@@ -1,20 +1,42 @@
 <div>
-  <h1>identification</h1>
-  <div *ngIf="showMessage" class="alert alert-danger">
-    {{ message }}
-  </div>
-  <div class="form-group">
-    <label>login</label>
-    <input [(ngModel)]="login" class="form-control" />
-  </div>
-  <div class="form-group">
-    <label>password</label>
-    <input type="password" [(ngModel)]="password" class="form-control" />
-  </div>
-  <div>
-    <button (click)="check()" class="btn btn-outline-primary">envoyer</button>
-    <a [routerLink]="['/home']" routerLinkActive="active" class="btn btn-link"
-      >retour accueil</a
-    >
-  </div>
+  <body>
+    <div class="content" role="main">
+      <h1>Identification</h1>
+
+      <div *ngIf="showMessage" class="alert alert-danger">
+        {{ message }}
+      </div>
+      <div class="form-group">
+        <label style="color: rgb(253, 251, 250)">Login</label>
+        <input [(ngModel)]="login" class="form-control" type="text" />
+      </div>
+      <div class="form-group">
+        <label style="color: rgb(255, 255, 255)">Password</label>
+        <input type="password" [(ngModel)]="password" class="form-control" />
+      </div>
+      <div>
+        <p></p>
+      </div>
+      <div>
+        <button (click)="check()" class="btn btn-outline-light">envoyer</button>
+
+        <a
+          [routerLink]="['/home']"
+          routerLinkActive="active"
+          class="btn btn-outline-light"
+          >retour accueil</a
+        >
+      </div>
+      <footer
+        style="
+          margin-top: 200px;
+          margin-left: 50px;
+          color: rgb(255, 255, 255);
+          font-size: 24px;
+        "
+      >
+        <p style="position: inherit">T3M Universe</p>
+      </footer>
+    </div>
+  </body>
 </div>

@@ -11,6 +11,7 @@ import { routes } from './routes';
 import { ElementEditorComponent } from './components/element-editor/element-editor.component';
 import { LoginComponent } from './components/login/login.component';
 import { InscriptionComponent } from './components/inscription/inscription.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { InscriptionComponent } from './components/inscription/inscription.compo
     ElementEditorComponent,
     LoginComponent,
     InscriptionComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

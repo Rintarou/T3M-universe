@@ -1,79 +1,4 @@
-:host {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 14px;
-  color: #333;
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.position_img {
-  border: none;
-  margin-top: 50px;
-  margin-left: 10px;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-  margin: 8px 0;
-}
-
-h6 {
-  position: fixed;
-  display: initial;
-  margin-left: 10px;
-}
-
-body {
-  background-color: lightblue;
-  background-image: url(./model/images/univers.jpg);
-  background-attachment: fixed;
-}
-
-p {
-  margin: 0;
-}
-
-.spacer {
-  flex: 1;
-}
-
-.toolbar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 60px;
-  display: flex;
-  align-items: flex-start;
-  background-color: #1976d2;
-  color: white;
-  font-weight: 600;
-}
-
-.content {
-  display: flex;
-  margin: 82px auto 32px;
-  padding: 0 16px;
-  max-width: 960px;
-  flex-direction: column;
-  align-items: center;
-}
-
-svg.material-icons {
-  height: 24px;
-  width: auto;
-}
-
-svg.material-icons:not(:last-child) {
-  margin-right: 8px;
-}
-
-.card svg.material-icons path {
+/* .card svg.material-icons path {
   fill: #888;
 }
 
@@ -84,21 +9,7 @@ svg.material-icons:not(:last-child) {
   margin-top: 16px;
 }
 
-.card {
-  all: unset;
-  border-radius: 4px;
-  border: 1px solid #eee;
-  background-color: #af9fd3;
-  height: 300px;
-  width: 200px;
-  margin: 0 16px 16px;
-  padding: 16px;
-  display: flex;
-  flex-direction: row;
-  justify-content: baseline;
 
-  line-height: 12px;
-}
 
 .card-container .card:not(:last-child) {
   margin-right: 0;
@@ -122,21 +33,9 @@ svg.material-icons:not(:last-child) {
   fill: rgb(105, 103, 103);
 }
 
-.card.highlight-card {
-  background-color: #1976d2;
-  color: white;
-  height: 75px;
-  width: 100px;
-  font-weight: 600;
-  border: none;
-  width: auto;
-  min-width: 30%;
-  position: relative;
-}
 
-.card.card.highlight-card span {
-  margin-left: 100px;
-}
+
+
 
 svg#rocket {
   width: 80px;
@@ -188,9 +87,9 @@ a {
   line-height: 0;
   padding: 14px 0;
   text-indent: 4px;
-}
+} */
 
-.terminal pre {
+/* .terminal pre {
   font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
   color: white;
   padding: 0 1rem 1rem;
@@ -227,9 +126,9 @@ footer {
 footer a {
   display: flex;
   align-items: center;
-}
+} */
 
-.github-star-badge {
+/* .github-star-badge {
   color: #24292e;
   display: flex;
   align-items: center;
@@ -263,7 +162,7 @@ svg#clouds {
 }
 
 /* Responsive Styles */
-@media screen and (max-width: 767px) {
+/* @media screen and (max-width: 767px) {
   .card-container > *:not(.circle-link),
   .terminal {
     width: 100%;
@@ -288,5 +187,4 @@ svg#clouds {
   svg#rocket-smoke {
     display: none;
     visibility: hidden;
-  }
-}
+  } */

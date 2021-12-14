@@ -1,0 +1,52 @@
+.content {
+  background-size: 100% auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 8px 0;
+}
+
+p {
+  margin: 0;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.toolbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: flex-start;
+  background-color: #1976d2;
+  color: white;
+  font-weight: 600;
+}
+
+.content {
+  display: flex;
+  margin: 10px auto 32px;
+  padding: 0 16px;
+  max-width: 300px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card {
+  all: unset;
+  border-radius: 4px;
+  border: 2px solid rgb(238, 220, 220);
+  background-color: #f6f3fd;
+  height: 300px;
+  width: 200px;
+  margin: 0 16px 50px;
+}

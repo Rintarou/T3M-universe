@@ -1,46 +1,69 @@
-<form (ngSubmit)="save()" [formGroup]="form">
-  <div class="form-group">
-    <label>login</label>
-    <input class="form-control" formControlName="login" />
+<body>
+  <div class="content" role="main">
+    <form (ngSubmit)="save()" [formGroup]="form">
+      <h1>Inscription</h1>
+      <div class="form-group">
+        <label style="color: rgb(253, 251, 250)">login</label>
+        <input class="form-control" formControlName="login" />
+      </div>
+      <div
+        *ngIf="form.controls['login'].dirty && form.controls['login'].invalid"
+        class="alert alert-danger"
+      >
+        {{ loginErrorMessage() }}
+      </div>
+      <ng-container formGroupName="passwordGroup">
+        <div class="form-group">
+          <label style="color: rgb(253, 251, 250)">password</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="password"
+          />
+        </div>
+        <div class="form-group">
+          <label style="color: rgb(253, 251, 250)">confirmation</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="confirm"
+          />
+        </div>
+        <div
+          *ngIf="
+            form.get('passwordGroup')?.invalid &&
+            form.get('passwordGroup.confirm')?.touched
+          "
+          class="alert alert-danger"
+        >
+          {{ passwordErrorMessage() }}
+        </div>
+      </ng-container>
+      <div>
+        <button
+          type="submit"
+          class="btn btn-outline-light"
+          [disabled]="!form.valid"
+        >
+          enregistrer {{ !form.valid }}
+        </button>
+        <a
+          [routerLink]="['/home']"
+          routerLinkActive="active"
+          class="btn btn-outline-light"
+          >annuler</a
+        >
+      </div>
+      <footer
+        style="
+          margin-top: 120px;
+          margin-left: 50px;
+          color: rgb(255, 255, 255);
+          font-size: 24px;
+        "
+      >
+        <p style="position: -ms-page">T3M Universe</p>
+      </footer>
+    </form>
   </div>
-  <div
-    *ngIf="form.controls['login'].dirty && form.controls['login'].invalid"
-    class="alert alert-danger"
-  >
-    {{ loginErrorMessage() }}
-  </div>
-  <ng-container formGroupName="passwordGroup">
-    <div class="form-group">
-      <label>password</label>
-      <input type="password" class="form-control" formControlName="password" />
-    </div>
-    <div class="form-group">
-      <label>confirmation</label>
-      <input type="password" class="form-control" formControlName="confirm" />
-    </div>
-    <div
-      *ngIf="
-        form.get('passwordGroup')?.invalid &&
-        form.get('passwordGroup.confirm')?.touched
-      "
-      class="alert alert-danger"
-    >
-      {{ passwordErrorMessage() }}
-    </div>
-  </ng-container>
-  <div>
-    <button
-      type="submit"
-      class="btn btn-outline-success"
-      [disabled]="!form.valid"
-    >
-      enregistrer {{ !form.valid }}
-    </button>
-    <a
-      [routerLink]="['/home']"
-      routerLinkActive="active"
-      class="btn btn-outline-warning"
-      >annuler</a
-    >
-  </div>
-</form>
+</body>
