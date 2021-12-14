@@ -16,6 +16,7 @@ import universe.model.Universe;
 public interface ElementRepository extends JpaRepository<Element, Long> {
 
     @Query("select e from Element e left join fetch e.parentElements left join fetch e.childElements where e.id=:id")
+    @Transactional
     Optional<Element> findByIdWithParentAndChild( @Param("id") Long id );
 
     Set<Element> findByNameContaining( @Param("name") String name );

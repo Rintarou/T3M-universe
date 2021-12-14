@@ -1,5 +1,8 @@
 package universe.model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
@@ -38,6 +42,12 @@ public class Element {
     @JsonView(JsonViews.Common.class)
     private String name;
 
+    @Lob
+    @Column( name = "image" )
+    @JsonView( JsonViews.Common.class )
+    private byte[] image;
+
+    @Lob
     @Column( name = "description" )
     @JsonView(JsonViews.Common.class)
     private String description;
@@ -63,6 +73,23 @@ public class Element {
     public Element() {
         
     }
+
+    public void setImage( byte[] img ) {
+        this.image = img;
+    }
+
+    // public void setImage() {
+    //     File file = new File("../../../resources/WEB-INF/static/images/anvil.jpg");
+    //     byte[] picInBytes = new byte[(int) file.length()];
+    //     try( FileInputStream fileInputStream = new FileInputStream( file ); )
+    //     {
+    //         fileInputStream.read(picInBytes);
+    //         //fileInputStream.close();
+    //     } catch( IOException e ) {
+    //         e.printStackTrace();
+    //     }
+    //     this.image = picInBytes;
+    // }
     
     public Set<Element> getChildElements() {
         Set<Element> ret = new HashSet<Element>();

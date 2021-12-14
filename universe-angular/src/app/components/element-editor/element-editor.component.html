@@ -11,6 +11,18 @@
         <label>unique?</label>
         <input [(ngModel)]='element.unique' type='checkbox' class='form-control'>
     </div>
+    
+    <div *ngIf="image" class="img-preview-container">
+        <div class="img-preview{{image.status === 'fail' ? '-error' : ''}}"
+            [ngStyle]="{'background-image': 'url('+ image.src + ')'}">
+            <img [src]="image.src" style='width:400px; height:250px'>
+        </div>
+    </div>
+
+    <label class="image-upload-container btn btn-bwm">
+        <span> image </span>
+        <input #imageInput type='file' accept='image/*' (change)='processFile(imageInput)'>
+    </label>
     <div>
         <button (click)='save()'>save</button>
     </div>

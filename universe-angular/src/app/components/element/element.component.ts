@@ -14,7 +14,16 @@ export class ElementComponent implements OnInit {
 
   constructor( private elementService :ElementService ) {}
 
+  reload( id :number ) {
+    this.id = id;
+    this.load();
+  }
+
   ngOnInit(): void {
+    this.load();
+  }
+
+  load(): void {
     this.elementService.byId( this.id ).subscribe({
       next: ( d ) => this.data = d,
       error: ( e ) =>  console.log( e ),

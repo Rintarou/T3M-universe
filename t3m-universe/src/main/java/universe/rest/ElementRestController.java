@@ -1,6 +1,7 @@
 package universe.rest;
 
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -9,6 +10,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +19,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -66,12 +70,27 @@ public class ElementRestController {
 	public Element create( @Valid @RequestBody Element element, BindingResult br) {
 		return elementService.save( element );
 	}
+
+	@PostMapping( value = "/{id}/img", consumes = MediaType.MULTIPART_FORM_DATA_VALUE )
+	@ResponseStatus( code = HttpStatus.ACCEPTED )
+	public void bindImage( @RequestParam("image") MultipartFile mp, @PathVariable("id") Long id ) throws IOException {
+		
+		Element e = elementService.byId( id );
+		e.setImage( mp.getBytes() );
+		elementService.save( e );
+	}
 	
 	@PutMapping("/{id}")
 	@JsonView( JsonViews.ElementWithUniverse.class )
 	public Element update(@Valid @RequestBody Element element, BindingResult br, @PathVariable("id") Long id) {
 		element.setId(id);
 		return elementService.save(element);
+	}
+
+	@PutMapping("/img")
+	@JsonView( JsonViews.ElementWithUniverse.class )
+	public Element img( @Valid @RequestBody Element element, BindingResult br ) {
+		return elementService.save( element );
 	}
 	
 	@DeleteMapping("/{id}")
