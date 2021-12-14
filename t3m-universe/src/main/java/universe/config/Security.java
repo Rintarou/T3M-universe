@@ -45,8 +45,11 @@ public class Security extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.POST,"/api/{universe_id}/element").access("@customWebSecurity.checkWrite(authentication,#universe_id)")
 				.antMatchers(HttpMethod.PUT,"/api/{universe_id}/element/{id}").access("@customWebSecurity.checkWrite(authentication,#universe_id)")
 				.antMatchers(HttpMethod.DELETE,"/api/{universe_id}/element/{id}").access("@customWebSecurity.checkWrite(authentication,#universe_id)")
+				.antMatchers(HttpMethod.PUT,"/api/universe/{id}").access("@customWebSecurity.checkOwner(authentication,#id)")
+				.antMatchers(HttpMethod.PUT,"/api/universe/addUserUniverse/{id}").access("@customWebSecurity.checkOwner(authentication,#id)")
+				.antMatchers(HttpMethod.DELETE,"/api/universe/{id}").access("@customWebSecurity.checkOwner(authentication,#id)")
+				.antMatchers(HttpMethod.POST,"/api/{universe_id}/relation/**").access("@customWebSecurity.checkWrite(authentication,#universe_id)")
 				.antMatchers("/api/**").authenticated()
-//				.antMatchers("/api/**").hasRole("USER")
 				.and()
 			.httpBasic();
 				

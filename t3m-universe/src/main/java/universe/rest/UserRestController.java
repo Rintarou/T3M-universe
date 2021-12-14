@@ -63,7 +63,7 @@ public class UserRestController {
 	}
 	
 	@GetMapping("/login/{login}")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.UserWithUniverses.class)
 	public boolean byLogin(@PathVariable("login") String login){
 		return userService.byLogin(login);
 	}

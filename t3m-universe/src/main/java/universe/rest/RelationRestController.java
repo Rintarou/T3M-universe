@@ -32,7 +32,7 @@ import universe.service.RelationService;
 import universe.service.UniverseService;
 
 @RestController
-@RequestMapping("/api/relation")
+@RequestMapping("/api/{universe_id}/relation")
 public class RelationRestController {
 
     @Autowired
@@ -59,8 +59,21 @@ public class RelationRestController {
     @ResponseStatus( code = HttpStatus.CREATED )
     public Relation create( @Valid @RequestBody Relation relation, BindingResult br ) {
         Relation r = relationService.byId( relation.getId() );
+        if (r==null) {
+        	return relationService.save( relation );
+        }
         r.getNatures().addAll( relation.getNatures() );
         return relationService.save( r );
-
     }
+    
+    
+    @PostMapping("/removeNature")
+    @JsonView( JsonViews.Common.class )
+    @ResponseStatus( code = HttpStatus.CREATED )
+    public Relation removeNature( @Valid @RequestBody Relation relation, BindingResult br ) {
+        Relation r = relationService.byId( relation.getId() );
+        r.getNatures().removeAll(relation.getNatures());
+        return relationService.save( r );
+    }
+    
 }

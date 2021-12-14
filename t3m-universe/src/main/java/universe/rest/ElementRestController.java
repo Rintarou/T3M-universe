@@ -62,6 +62,21 @@ public class ElementRestController {
 	@JsonView( JsonViews.Common.class )
 	public Element byId( @PathVariable("id") Long id ) { //@PathVariable("universe_id") Long universe_id,
 		return elementService.byId( id );
+		
+	}
+	
+	@GetMapping("/children/{id}")
+	@JsonView( JsonViews.Common.class )
+	public Set<Element> getChildren( @PathVariable("id") Long id ) {
+		return elementService.byId( id ).getChildElements();
+		
+	}
+	
+	@GetMapping("/parents/{id}")
+	@JsonView( JsonViews.Common.class )
+	public Set<Element> getParents( @PathVariable("id") Long id ) {
+		return elementService.byId( id ).getParentElements();
+		
 	}
 
 	@PostMapping("")

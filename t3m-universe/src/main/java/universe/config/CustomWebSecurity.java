@@ -18,4 +18,9 @@ public class CustomWebSecurity {
 		return authentication.getAuthorities().contains(new SimpleGrantedAuthority(universeName+"_owner"))
 				|| authentication.getAuthorities().contains(new SimpleGrantedAuthority(universeName+"_readWrite"));
 	}
+	
+	public boolean checkOwner(Authentication authentication, Long id) {
+		String universeName = universeService.byId(id).getName();
+		return authentication.getAuthorities().contains(new SimpleGrantedAuthority(universeName+"_owner"));
+	}
 }

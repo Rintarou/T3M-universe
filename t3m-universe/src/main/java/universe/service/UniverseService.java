@@ -31,8 +31,9 @@ public class UniverseService {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 		Set<ConstraintViolation<Universe>> violations = validator.validate(universe);
 		if (violations.isEmpty()) {
-			ret = universeRepository.save(universe);
 			userUniverseRepository.saveAll(universe.getUserUniverses());
+			ret = universeRepository.save(universe);
+			
 //			List<UserUniverse> userUniverses = universe.getUserUniverses(); 
 //			if (userUniverses != null) {
 //				userUniverses.forEach( uu -> {

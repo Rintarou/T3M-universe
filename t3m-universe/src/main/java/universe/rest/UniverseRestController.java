@@ -20,10 +20,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import universe.exception.UniverseException;
 import universe.model.AccessRight;
 import universe.model.JsonViews;
 import universe.model.Universe;
+import universe.model.UserUniverse;
 import universe.service.UniverseService;
+import universe.service.UserService;
+import universe.service.UserUniverseService;
 import universe.service.auth.CustomUserDetails;
 
 @RestController
@@ -31,38 +35,52 @@ import universe.service.auth.CustomUserDetails;
 public class UniverseRestController {
 	@Autowired
 	private UniverseService universeService;
-	
+	@Autowired
+	private UserUniverseService userUniverseService;
+
 	@GetMapping("")
 	@JsonView(JsonViews.Common.class)
-	public List<Universe> all(){
+	public List<Universe> all() {
 		return universeService.allUniverse();
 	}
-	
+
 	@GetMapping("/{id}")
 	@JsonView(JsonViews.UniverseWithUsers.class)
 	public Universe byId(@PathVariable("id") Long id) {
 		return universeService.byId(id);
 	}
-	
+
 	@PostMapping("")
 	@JsonView(JsonViews.Common.class)
-	@ResponseStatus(code=HttpStatus.CREATED)
-	public Universe create(@Valid @RequestBody Universe universe, BindingResult br, @AuthenticationPrincipal CustomUserDetails cUD) {
+	@ResponseStatus(code = HttpStatus.CREATED)
+	public Universe create(@Valid @RequestBody Universe universe, BindingResult br,
+			@AuthenticationPrincipal CustomUserDetails cUD) {
 		universe.addUser(cUD.getUser(), AccessRight.owner);
-		universeService.save(universe);
-		return universe;
+		return universeService.save(universe);
 	}
-	
+
 	@PutMapping("/{id}")
 	@JsonView(JsonViews.Common.class)
 	public Universe update(@Valid @PathVariable("id") Long id, @RequestBody Universe universe, BindingResult br) {
 		universe.setId(id);
-		universeService.save(universe);
-		return universe;
+		return universeService.save(universe);
 	}
-	
+
+	@PutMapping("/addUserUniverse/{id}")
+	@JsonView(JsonViews.Common.class)
+	public UserUniverse addUserUniverse(@Valid @RequestBody UserUniverse userUniverse, BindingResult br,
+			@PathVariable("id") Long id) {
+		if (id == userUniverse.getId().getUniverse().getId()) {
+			return userUniverseService.save(userUniverse);
+		}
+		else {
+			throw new UniverseException();
+		}
+
+	}
+
 	@DeleteMapping("/{id}")
-	@ResponseStatus(code=HttpStatus.NO_CONTENT)
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable("id") Long id) {
 		universeService.delete(universeService.byId(id));
 	}

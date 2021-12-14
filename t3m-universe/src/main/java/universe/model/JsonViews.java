@@ -15,4 +15,5 @@ public class JsonViews {
 	public static class ElementWithUniverse extends Common{
 		
 	}
+	
 }

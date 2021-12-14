@@ -57,10 +57,10 @@ public class Element {
     @JsonView(JsonViews.Common.class)
     private Boolean unique;
 
-    @OneToMany( mappedBy = "id.parent", fetch = FetchType.LAZY )
+    @OneToMany( mappedBy = "id.child", fetch = FetchType.LAZY )
     private Set<Relation> parentElements;
 
-    @OneToMany( mappedBy = "id.child", fetch = FetchType.LAZY )
+    @OneToMany( mappedBy = "id.parent", fetch = FetchType.LAZY )
     private Set<Relation> childElements;
     
     @ManyToOne
@@ -99,7 +99,7 @@ public class Element {
     
     public Set<Element> getParentElements() {
         Set<Element> ret = new HashSet<Element>();
-        childElements.stream().map( r -> r.getId().getParent() ).forEach( ret::add );
+        parentElements.stream().map( r -> r.getId().getParent() ).forEach( ret::add );
         return ret;
     }
     
@@ -111,7 +111,7 @@ public class Element {
     
     public Set<Element> getParentElements( Class<? extends Element> clazz ) {
         Set<Element> ret = new HashSet<Element>();
-        childElements.stream().map( r -> r.getId().getParent() ).filter( e -> clazz.isInstance( e ) ).forEach( ret::add );
+        parentElements.stream().map( r -> r.getId().getParent() ).filter( e -> clazz.isInstance( e ) ).forEach( ret::add );
         return ret;
     }
 

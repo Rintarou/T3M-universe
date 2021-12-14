@@ -22,7 +22,8 @@ public class RelationService {
     private RelationRepository relationRepository;
     
     public Relation byId( RelationKey id ) {
-        return relationRepository.findById( id ).orElseThrow( RelationException::new );
+        //return relationRepository.findById( id ).orElseThrow( RelationException::new );
+    	return relationRepository.findById( id ).orElse(null);
     }
 
     public void delete( Relation relation ) {
@@ -48,11 +49,11 @@ public class RelationService {
 		Set<ConstraintViolation<Relation>> violations = validator.validate( relation );
 		if( violations.isEmpty() ) {
 			// save les relations
-			// save l'univers ?
 			ret = relationRepository.save( relation );
 		} else {
 			throw new RelationException();
 		}
 		return ret;
     }
+    
 }

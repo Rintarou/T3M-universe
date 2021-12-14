@@ -33,7 +33,6 @@ public class CustomUserDetails implements UserDetails{
 			// owner ; read ; readWrite
 			// hashUniver_owner ; hashUniver_read ; hashUniver_readWrite
 		});
-		authorities.add(new SimpleGrantedAuthority("USER"));
 		return authorities;
 	}
 

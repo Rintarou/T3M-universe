@@ -7,10 +7,13 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table( name = "relations" )
 public class Relation {
     @ElementCollection
+    @JsonView(JsonViews.Common.class)
     private Set<String> natures;
 
     @EmbeddedId

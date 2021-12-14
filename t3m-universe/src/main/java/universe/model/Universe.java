@@ -107,6 +107,10 @@ public class Universe {
 	public void addUser(User user, AccessRight accessRight) {
 		userUniverses.add(new UserUniverse(new UserUniverseKey(user, this), accessRight));
 	}
+	
+	public void addUser(UserUniverse userUniverse) {
+		userUniverses.add(userUniverse);
+	}
 		
 	
 	
