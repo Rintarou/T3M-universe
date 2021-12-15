@@ -1,14 +1,10 @@
-
-<button class="card">
-    <div *ngIf="data.image" class="img-preview-container">
+<a [routerLink]="['/elementView', id]" routerLinkActive="active">
+    <button class="card">
+        <div *ngIf="data.image" class="img-preview-container">
         <img [src]="'data:image/jpg;base64,'+data.image">
     </div>
     <h1>{{data.name}}</h1>
 
-    <h4>Element</h4>
-
     <p>{{data.description}}</p>
-    <!-- <div>
-        <button (click)='reload( 71 )'>save</button>
-    </div> -->
 </button>
+</a>

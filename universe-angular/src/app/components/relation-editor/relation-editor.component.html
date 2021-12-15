@@ -1,0 +1,23 @@
+<div>
+    <div class="form-group">
+        <label>nature of the relation</label>
+        <input [(ngModel)]="nature" class="form-control" (change)="naming()"/>
+    </div>
+    <div *ngFor="let nature of options">
+        {{nature}}
+    </div>
+
+    <div class="form-group">
+        <label>Element to connect to</label>
+        <input [(ngModel)]="child" class="form-control" (change)="target()"/>
+    </div>
+
+    <div *ngFor="let el of elements">
+        {{el.name}}
+    </div>
+
+    <button (click)="save()"> save </button>
+
+</div>
+    
+

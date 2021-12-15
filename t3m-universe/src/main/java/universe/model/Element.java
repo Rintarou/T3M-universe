@@ -112,17 +112,19 @@ public class Element {
         return ret;
     }
     
-    public Set<Element> getChildElements( Class<? extends Element> clazz ) {
-        Set<Element> ret = new HashSet<Element>();
-        childElements.stream().map( r -> r.getId().getChild() ).filter( e -> clazz.isInstance( e ) ).forEach( ret::add );
-        return ret;
-    }
+    // for specific types of relatives
     
-    public Set<Element> getParentElements( Class<? extends Element> clazz ) {
-        Set<Element> ret = new HashSet<Element>();
-        parentElements.stream().map( r -> r.getId().getParent() ).filter( e -> clazz.isInstance( e ) ).forEach( ret::add );
-        return ret;
-    }
+    // public Set<Element> getChildElements( Class<? extends Element> clazz ) {
+    //     Set<Element> ret = new HashSet<Element>();
+    //     childElements.stream().map( r -> r.getId().getChild() ).filter( e -> clazz.isInstance( e ) ).forEach( ret::add );
+    //     return ret;
+    // }
+    
+    // public Set<Element> getParentElements( Class<? extends Element> clazz ) {
+    //     Set<Element> ret = new HashSet<Element>();
+    //     parentElements.stream().map( r -> r.getId().getParent() ).filter( e -> clazz.isInstance( e ) ).forEach( ret::add );
+    //     return ret;
+    // }
 
     public String getName() {
         return name;

@@ -1,0 +1,21 @@
+<h1>{{data.name}}</h1>
+<div class='container'>
+
+    <div *ngIf="data.image" class="img-preview-container">
+        <img [src]="'data:image/jpg;base64,'+data.image">
+    </div>
+    <div class=''>
+
+        <p>{{data.description}}</p>
+    </div>
+
+    <h2> Relations </h2>
+    <div class="card-container">
+        <div *ngFor="let element of relatives">
+            <app-element [id]="element.id"></app-element>
+        </div>
+    </div>
+
+     <div><app-relation-editor ></app-relation-editor> </div>
+</div>
+    

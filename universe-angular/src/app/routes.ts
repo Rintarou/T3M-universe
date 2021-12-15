@@ -1,3 +1,4 @@
+import { ElementViewComponent } from './components/element-view/element-view.component';
 import { UniverseEditorComponent } from './components/universe-editor/universe-editor.component';
 import { DashboardUniverseComponent } from './components/dashboard-universe/dashboard-universe.component';
 import { DashboardElementComponent } from './components/dashboard-element/dashboard-element.component';
@@ -18,6 +19,7 @@ export const routes: Routes = [
   { path: 'universes', component: DashboardUniverseComponent },
   { path: 'worlds', component: ElementEditorComponent },
   { path: 'dashboard', component: DashboardElementComponent },
+  { path: 'elementView/:id', component: ElementViewComponent },
   { path: 'info', component: ElementEditorComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

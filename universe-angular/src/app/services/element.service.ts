@@ -10,12 +10,29 @@ export class ElementService {
 
   constructor(private http: HttpClient) {}
 
-  public byId(id: number, universe_id: number): Observable<any> {
+  public byId(id: number | string | null, universe_id: number): Observable<any> {
     return this.http.get<[]>(`${this.url}/${universe_id}/element/${id}`, {
       headers: this.httpHeaders,
     });
   }
 
+  public byName( name :string, universe_id: number ) {
+    return this.http.get<[]>(`${this.url}/${universe_id}/element/likeName/${name}`, {
+      headers: this.httpHeaders,
+    });
+  }
+
+  public children(id: number | string | null, universe_id: number): Observable<any> {
+    return this.http.get<[]>(`${this.url}/${universe_id}/element/${id}/children`, {
+      headers: this.httpHeaders,
+    });
+  }
+  
+  public parents(id: number | string | null, universe_id: number): Observable<any> {
+    return this.http.get<[]>(`${this.url}/${universe_id}/element/${id}/parents`, {
+      headers: this.httpHeaders,
+    });
+  }
   public all(universe_id: number): Observable<any> {
     return this.http.get<[]>(`${this.url}/${universe_id}/element`, {
       headers: this.httpHeaders,

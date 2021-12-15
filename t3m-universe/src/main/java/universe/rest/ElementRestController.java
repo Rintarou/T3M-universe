@@ -65,14 +65,14 @@ public class ElementRestController {
 		
 	}
 	
-	@GetMapping("/children/{id}")
+	@GetMapping("/{id}/children")
 	@JsonView( JsonViews.Common.class )
 	public Set<Element> getChildren( @PathVariable("id") Long id ) {
 		return elementService.byId( id ).getChildElements();
 		
 	}
 	
-	@GetMapping("/parents/{id}")
+	@GetMapping("/{id}/parents")
 	@JsonView( JsonViews.Common.class )
 	public Set<Element> getParents( @PathVariable("id") Long id ) {
 		return elementService.byId( id ).getParentElements();

@@ -16,6 +16,8 @@ import { DashboardElementComponent } from './components/dashboard-element/dashbo
 import { UniverseEditorComponent } from './components/universe-editor/universe-editor.component';
 import { DashboardUniverseComponent } from './components/dashboard-universe/dashboard-universe.component';
 import { UniverseComponent } from './components/universe/universe.component';
+import { ElementViewComponent } from './components/element-view/element-view.component';
+import { RelationEditorComponent } from './components/relation-editor/relation-editor.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { UniverseComponent } from './components/universe/universe.component';
     UniverseEditorComponent,
     DashboardUniverseComponent,
     UniverseComponent,
+    ElementViewComponent,
+    RelationEditorComponent,
   ],
   imports: [
     BrowserModule,
