@@ -31,7 +31,10 @@ public class ElementService {
 	}
 
 	public Set<Element> likeName( String name) {
-        return elementRepository.findByNameContaining( name );
+        
+		Set<Element> ret = elementRepository.findByNameContaining( name );
+		ret.forEach( ( Element e )-> { e.setImage( null ); });
+		return ret;
     }
 
     public Element save( Element element ) {

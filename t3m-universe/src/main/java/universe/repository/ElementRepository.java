@@ -19,6 +19,8 @@ public interface ElementRepository extends JpaRepository<Element, Long> {
     @Transactional
     Optional<Element> findByIdWithParentAndChild( @Param("id") Long id );
 
+    //Query("select e.id, e.name from Element e where e.name.contains( :name )")
+    @Transactional
     Set<Element> findByNameContaining( @Param("name") String name );
     
     Set<Element> findByUniverse( Universe universe );

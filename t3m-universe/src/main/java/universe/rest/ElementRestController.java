@@ -82,7 +82,9 @@ public class ElementRestController {
 	@PostMapping("")
 	@JsonView( JsonViews.ElementWithUniverse.class )
 	@ResponseStatus( code = HttpStatus.CREATED )
-	public Element create( @Valid @RequestBody Element element, BindingResult br) {
+	public Element create( @Valid @RequestBody Element element, @PathVariable("universe_id") Long id, BindingResult br) {
+		Universe u = universeService.byId( id );
+		element.setUniverse( u );
 		return elementService.save( element );
 	}
 

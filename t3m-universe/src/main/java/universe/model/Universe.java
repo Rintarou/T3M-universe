@@ -37,13 +37,13 @@ public class Universe {
 
 	@OneToMany(mappedBy = "id.universe")
 	@JsonView(JsonViews.UniverseWithUsers.class)
-	private List<UserUniverse> userUniverses = new ArrayList<UserUniverse>();
+	private List<UserUniverse> userUniverses;
 
 	@OneToMany(mappedBy = "universe", fetch = FetchType.LAZY)
 	private Set<Element> elements;
 	
 	public Universe() {
-		
+		this.userUniverses = new ArrayList<UserUniverse>();
 	}
 
 	public Long getId() {

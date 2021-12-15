@@ -26,6 +26,8 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import universe.exception.LimitedAssignationException;
+
 @Entity
 @Table( name = "elements" )
 @Inheritance( strategy = InheritanceType.SINGLE_TABLE )
@@ -47,7 +49,6 @@ public class Element {
     @JsonView( JsonViews.Common.class )
     private byte[] image;
 
-    @Lob
     @Column( name = "description" )
     @JsonView(JsonViews.Common.class)
     private String description;
@@ -72,6 +73,14 @@ public class Element {
     
     public Element() {
         
+    }
+
+    public void setUniverse( Universe universe ) throws LimitedAssignationException {
+        if( this.universe == null ) {
+            this.universe = universe;
+        } else {
+            throw new LimitedAssignationException();
+        }
     }
 
     public void setImage( byte[] img ) {
