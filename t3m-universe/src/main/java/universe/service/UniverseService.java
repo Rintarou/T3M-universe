@@ -14,6 +14,7 @@ import universe.exception.UniverseException;
 import universe.model.Universe;
 import universe.model.UserUniverse;
 import universe.model.UserUniverseKey;
+import universe.repository.ElementRepository;
 import universe.repository.UniverseRepository;
 import universe.repository.UserUniverseRepository;
 
@@ -25,6 +26,7 @@ public class UniverseService {
 	
 	@Autowired
 	private UserUniverseRepository userUniverseRepository;
+	
 	
 	public Universe save( Universe universe ) {
 		Universe ret = null;

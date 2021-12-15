@@ -19,6 +19,7 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inscription',
@@ -28,7 +29,11 @@ import {
 export class InscriptionComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private userService: UserService, private fb: FormBuilder) {
+  constructor(
+    private userService: UserService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {
     this.form = new FormGroup({
       login: new FormControl('', [Validators.required], this.checkLogin()),
       passwordGroup: new FormGroup(
@@ -58,6 +63,7 @@ export class InscriptionComponent implements OnInit {
     this.userService.insert(user).subscribe((u) => {
       console.log(u);
     });
+    this.router.navigate(['/login']);
   }
 
   checkLogin(): AsyncValidatorFn {
