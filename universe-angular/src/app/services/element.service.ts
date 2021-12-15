@@ -15,6 +15,10 @@ export class ElementService {
     return this.http.get<[]>(`${ this.url }/${ id }`, { headers: this.httpHeaders } );
   }
 
+  public all() :Observable<any> {
+    return this.http.get<[]>(`${ this.url }`, { headers: this.httpHeaders } );
+  }
+
   public addImage( id :number, image :File ) :Observable<any> {
     const formData = new FormData();
 

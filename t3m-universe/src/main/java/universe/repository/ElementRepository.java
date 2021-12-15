@@ -23,6 +23,7 @@ public interface ElementRepository extends JpaRepository<Element, Long> {
     @Transactional
     Set<Element> findByNameContaining( @Param("name") String name );
     
+    @Transactional
     Set<Element> findByUniverse( Universe universe );
 
 //    @Query("from :Class")

@@ -1,3 +1,4 @@
+import { DashboardElementComponent } from './components/dashboard-element/dashboard-element.component';
 import { InscriptionComponent } from './components/inscription/inscription.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
@@ -11,7 +12,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'inscription', component: InscriptionComponent },
   { path: 'worlds', component: ElementEditorComponent },
-  { path: 'dashboard', component: ElementComponent },
+  { path: 'dashboard', component: DashboardElementComponent },
   { path: 'info', component: ElementEditorComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

@@ -11,13 +11,22 @@
         margin: 8px 0;
     }
 
+    img {
+        width: 125px;
+        height: 80px;
+        border-color: black;
+        border-style: solid;
+        border-width: 1px;
+        object-fit: cover;
+    }
+
     .card {
         all: unset;
         border-radius: 4px;
         border: 1px solid #eee;
         background-color: #fafafa;
+        width: 125px;
         height: 200px;
-        width: 100px;
         margin: 0 8px 16px;
         padding: 16px;
         display: flex;

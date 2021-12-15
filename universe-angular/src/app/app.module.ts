@@ -12,6 +12,7 @@ import { ElementEditorComponent } from './components/element-editor/element-edit
 import { LoginComponent } from './components/login/login.component';
 import { InscriptionComponent } from './components/inscription/inscription.component';
 import { HomeComponent } from './components/home/home.component';
+import { DashboardElementComponent } from './components/dashboard-element/dashboard-element.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { HomeComponent } from './components/home/home.component';
     LoginComponent,
     InscriptionComponent,
     HomeComponent,
+    DashboardElementComponent,
   ],
   imports: [
     BrowserModule,
