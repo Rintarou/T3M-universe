@@ -34,6 +34,7 @@ public class UniverseService {
 			ret = universeRepository.save(universe);
 			userUniverseRepository.saveAll(universe.getUserUniverses());
 			
+			
 //			List<UserUniverse> userUniverses = universe.getUserUniverses(); 
 //			if (userUniverses != null) {
 //				userUniverses.forEach( uu -> {
@@ -61,8 +62,8 @@ public class UniverseService {
 		return universeRepository.findById(id).orElseThrow(UniverseException::new);
 	}
 	
-	public List<Universe> allUniverse() {
-		return universeRepository.findAll();
+	public Set<Universe> allUniverse() {
+		return universeRepository.all();
 	}
 	
 	public UserUniverse findUserUniverseById(UserUniverseKey id){

@@ -1,0 +1,27 @@
+<body>
+  <!-- <img src="../assets/images/univers.jpg" /> -->
+
+  <div
+    class="content"
+    role="main"
+    [ngStyle]="{ background: 'url(../assets/images/univers.jpg)' }"
+  >
+    <div
+      style="
+        text-align: center;
+        height: 200px;
+        z-index: 2;
+        font-size: 200%;
+        color: rgb(246, 251, 252);
+      "
+    >
+      <h1>Choose your universes</h1>
+    </div>
+
+    <div class="card-container">
+      <div *ngFor="let universe of data">
+        <app-universe [id]="universe.id"></app-universe>
+      </div>
+    </div>
+  </div>
+</body>

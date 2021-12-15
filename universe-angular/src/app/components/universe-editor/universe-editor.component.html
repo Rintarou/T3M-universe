@@ -1,0 +1,37 @@
+<form (ngSubmit)="save()" [formGroup]="form">
+  <h1>Universe Editor</h1>
+  <div class="form-group">
+    <label style="color: rgb(0, 0, 0)">name</label>
+    <input class="form-control" formControlName="name" />
+  </div>
+  <div
+    *ngIf="form.controls['name'].dirty && form.controls['name'].invalid"
+    class="alert alert-danger"
+  >
+    {{ nameErrorMessage() }}
+  </div>
+  <label class="image-upload-container btn btn-bwm">
+    <span> image </span>
+    <input
+      #imageInput
+      type="file"
+      accept="image/*"
+      (change)="processFile(imageInput)"
+    />
+  </label>
+  <div>
+    <button
+      type="submit"
+      class="btn btn-outline-primary"
+      [disabled]="!form.valid"
+    >
+      enregistrer
+    </button>
+    <a
+      [routerLink]="['/home']"
+      routerLinkActive="active"
+      class="btn btn-outline-secondary"
+      >annuler</a
+    >
+  </div>
+</form>

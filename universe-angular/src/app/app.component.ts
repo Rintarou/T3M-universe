@@ -15,4 +15,8 @@ export class AppComponent {
     sessionStorage.clear();
     this.router.navigate(['/home']);
   }
+
+  get logged(): boolean {
+    return !!sessionStorage.getItem('token') ? true : false;
+  }
 }

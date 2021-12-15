@@ -1,5 +1,9 @@
 <div class="card-container">
-    <div *ngFor="let el of data">
-        <app-element [id]="el.id"></app-element>
-    </div>
+  <button class="card" (click)="newElem()">
+    <h1>+</h1>
+    New element
+  </button>
+  <div *ngFor="let el of data">
+    <app-element [id]="el.id"></app-element>
+  </div>
 </div>

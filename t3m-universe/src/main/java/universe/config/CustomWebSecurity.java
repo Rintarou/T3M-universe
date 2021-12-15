@@ -13,14 +13,14 @@ public class CustomWebSecurity {
 	@Autowired
 	private UniverseService universeService;
 	
-	public boolean checkWrite(Authentication authentication, Long id) {
-		String universeName = universeService.byId(id).getName();
+	public boolean checkWrite(Authentication authentication, Long universe_id) {
+		String universeName = universeService.byId(universe_id).getName();
 		return authentication.getAuthorities().contains(new SimpleGrantedAuthority(universeName+"_owner"))
 				|| authentication.getAuthorities().contains(new SimpleGrantedAuthority(universeName+"_readWrite"));
 	}
 	
-	public boolean checkOwner(Authentication authentication, Long id) {
-		String universeName = universeService.byId(id).getName();
+	public boolean checkOwner(Authentication authentication, Long universe_id) {
+		String universeName = universeService.byId(universe_id).getName();
 		return authentication.getAuthorities().contains(new SimpleGrantedAuthority(universeName+"_owner"));
 	}
 }

@@ -3,32 +3,45 @@ import { Injectable, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ElementService {
-  
-  private url = 'http://localhost:8080/universe/api/100/element';
-  
-  constructor( private http :HttpClient ) {}
-  
-  public byId( id :number ) :Observable<any> {
-    return this.http.get<[]>(`${ this.url }/${ id }`, { headers: this.httpHeaders } );
+  private url = 'http://localhost:8080/universe/api'; //100/element
+
+  constructor(private http: HttpClient) {}
+
+  public byId(id: number, universe_id: number): Observable<any> {
+    return this.http.get<[]>(`${this.url}/${universe_id}/element/${id}`, {
+      headers: this.httpHeaders,
+    });
   }
 
-  public all() :Observable<any> {
-    return this.http.get<[]>(`${ this.url }`, { headers: this.httpHeaders } );
+  public all(universe_id: number): Observable<any> {
+    return this.http.get<[]>(`${this.url}/${universe_id}/element`, {
+      headers: this.httpHeaders,
+    });
   }
 
-  public addImage( id :number, image :File ) :Observable<any> {
+  public addImage(
+    id: number,
+    image: File,
+    universe_id: number
+  ): Observable<any> {
     const formData = new FormData();
 
     formData.append('image', image);
-    console.log( `${ this.url }/${ id }/img` );
-    return this.http.post<[]>( `${ this.url }/${ id }/img`, formData, { headers: this.httpHeaders } );
+    console.log(`${this.url}/${id}/img`);
+    return this.http.post<[]>(
+      `${this.url}/${universe_id}/element/${id}/img`,
+      formData,
+      { headers: this.httpHeaders }
+    );
   }
-  
-  public insert( o :any ) :Observable<any> {
-    return this.http.post<[]>( this.url, o, { headers: this.httpHeaders } );
+
+  public insert(o: any, universe_id: number): Observable<any> {
+    return this.http.post<[]>(this.url + '/' + universe_id + '/element', o, {
+      headers: this.httpHeaders,
+    });
   }
 
   private get httpHeaders(): HttpHeaders {
@@ -39,9 +52,7 @@ export class ElementService {
     });
   }
 
-  public dummyElement() :Observable<any> {
-    return this.http.get<[]>( this.url );
+  public dummyElement(universe_id: number): Observable<any> {
+    return this.http.get<[]>(this.url + '/' + universe_id + '/element');
   }
-
-  
 }

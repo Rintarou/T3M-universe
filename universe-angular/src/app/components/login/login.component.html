@@ -18,13 +18,19 @@
         <p></p>
       </div>
       <div>
-        <button (click)="check()" class="btn btn-outline-light">envoyer</button>
+        <button (click)="check()" class="btn btn-outline-light">submit</button>
 
         <a
           [routerLink]="['/home']"
           routerLinkActive="active"
           class="btn btn-outline-light"
-          >retour accueil</a
+          >cancel</a
+        >
+        <a
+          [routerLink]="['/inscription']"
+          routerLinkActive="active"
+          class="btn btn-outline-light"
+          >create account</a
         >
       </div>
       <footer

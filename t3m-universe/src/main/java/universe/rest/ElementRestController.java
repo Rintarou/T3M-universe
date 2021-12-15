@@ -54,7 +54,7 @@ public class ElementRestController {
 
 	@GetMapping("/likeName/{name}")
     @JsonView(JsonViews.Common.class)
-    public Set<Element> nameMatching( @PathVariable("name") String name ) {
+    public Set<Element> nameMatching(@PathVariable("name") String name ) {
         return elementService.likeName( name );
     }
 

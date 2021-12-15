@@ -6,26 +6,33 @@
 
 <!-- Toolbar -->
 
-<nav>
-  <!-- <a routerLink="/home" routerLinkActive="active" class="btn btn-link">home</a>
-
-  <a routerLink="/worlds" routerLinkActive="active" class="btn btn-link"
-    >worlds</a
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a
+    *ngIf="logged"
+    routerLink="/universes"
+    routerLinkActive="active"
+    class="nav-link"
+    >Universes</a
   >
--->
-
-  <a routerLink="/dashboard" routerLinkActive="active" class="btn btn-link">dashboard</a>
-  <a routerLink="/info" routerLinkActive="active" class="btn btn-link">info</a>
-  <a routerLink="/home" routerLinkActive="active" class="btn btn-link">home</a>
-  <a routerLink="/login" routerLinkActive="active" class="btn btn-link"
+  <a routerLink="/home" routerLinkActive="active" class="nav-link">home</a>
+  <a
+    *ngIf="logged"
+    routerLink="/universeEditor"
+    routerLinkActive="active"
+    class="nav-link"
+    >New universe</a
+  >
+  <a
+    *ngIf="!logged"
+    routerLink="/login"
+    routerLinkActive="active"
+    class="nav-link"
     >login</a
   >
-  <a routerLink="/inscription" routerLinkActive="active" class="btn btn-link"
-    >inscription</a
-  >
-  
-  <button (click)="logout()" class="btn btn-link">logout</button>
-  
+
+  <button *ngIf="logged" (click)="logout()" class="btn btn-outline-danger">
+    logout
+  </button>
 </nav>
 
 <router-outlet></router-outlet>

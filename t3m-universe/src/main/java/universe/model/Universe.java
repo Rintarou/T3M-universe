@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -28,12 +29,18 @@ public class Universe {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqUniverses")
+	@JsonView(JsonViews.Common.class)
 	private Long id;
 
 	@Column(name = "name", length = 100)
 	@NotEmpty
 	@JsonView(JsonViews.Common.class)
 	private String name;
+	
+	@Lob
+    @Column( name = "image" )
+    @JsonView( JsonViews.Common.class )
+    private byte[] image;
 
 	@OneToMany(mappedBy = "id.universe")
 	@JsonView(JsonViews.UniverseWithUsers.class)
@@ -64,6 +71,14 @@ public class Universe {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
 
 	public List<UserUniverse> getUserUniverses() {

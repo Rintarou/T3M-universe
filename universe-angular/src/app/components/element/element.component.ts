@@ -4,17 +4,20 @@ import { Component, Input, OnInit } from '@angular/core';
 @Component({
   selector: 'app-element',
   templateUrl: './element.component.html',
-  styleUrls: ['./element.component.css']
+  styleUrls: ['./element.component.css'],
 })
 export class ElementComponent implements OnInit {
+  @Input('id') id: number = -1;
 
-  @Input('id') id :number = -1;
+  data: any = {};
 
-  data :any = {};
+  constructor(private elementService: ElementService) {}
 
-  constructor( private elementService :ElementService ) {}
+  get universe_id() {
+    return Number(sessionStorage.getItem('universe_id'));
+  }
 
-  reload( id :number ) {
+  reload(id: number) {
     this.id = id;
     this.load();
   }
@@ -24,11 +27,10 @@ export class ElementComponent implements OnInit {
   }
 
   load(): void {
-    this.elementService.byId( this.id ).subscribe({
-      next: ( d ) => this.data = d,
-      error: ( e ) =>  console.log( e ),
-      complete: () =>  console.info('element retrieved'),
+    this.elementService.byId(this.id, this.universe_id).subscribe({
+      next: (d) => (this.data = d),
+      error: (e) => console.log(e),
+      complete: () => console.info('element retrieved'),
     });
   }
-
 }

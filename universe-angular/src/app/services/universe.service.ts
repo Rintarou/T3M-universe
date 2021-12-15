@@ -14,7 +14,7 @@ export class UniverseService {
   private get httpHeaders(): HttpHeaders {
     return new HttpHeaders({
       Authorization: 'Basic ' + sessionStorage.getItem('token'),
-      'Content-Type': 'application/json',
+      //'Content-Type': 'application/json',
     });
   }
 
@@ -23,7 +23,31 @@ export class UniverseService {
   // }
 
   byId(id: number): Observable<Universe> {
-    return this.http.get<Universe>(this.url + '/' + id);
+    return this.http.get<Universe>(this.url + '/' + id, {
+      headers: this.httpHeaders,
+    });
+  }
+
+  insert(universe: Universe): Observable<any> {
+    const o = {
+      name: universe.name,
+    };
+    return this.http.post<any>(this.url, o, {
+      headers: this.httpHeaders,
+    });
+  }
+
+  public all(): Observable<any> {
+    return this.http.get<[]>(`${this.url}`, { headers: this.httpHeaders });
+  }
+
+  public addImage(id: number, image: File): Observable<any> {
+    const formData = new FormData();
+
+    formData.append('image', image);
+    return this.http.post<[]>(`${this.url}/${id}/img`, formData, {
+      headers: this.httpHeaders,
+    });
   }
 
   //update();

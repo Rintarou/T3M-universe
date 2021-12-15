@@ -1,29 +1,38 @@
 <div>
-    <div class='form-group'>
-        <label>name</label>
-        <input [(ngModel)]='element.name' class='form-control' />
-    </div>
-    <div class='form-group'>
-        <label>description</label>
-        <input [(ngModel)]='element.description' class='form-control' />
-    </div>
-    <div class='form-group'>
-        <label>unique?</label>
-        <input [(ngModel)]='element.unique' type='checkbox' class='form-control'>
-    </div>
-    
-    <div *ngIf="image" class="img-preview-container">
-        <div class="img-preview{{image.status === 'fail' ? '-error' : ''}}"
-            [ngStyle]="{'background-image': 'url('+ image.src + ')'}">
-            <img [src]="image.src" style='width:400px; height:250px'>
-        </div>
-    </div>
+  <div class="form-group">
+    <label>name</label>
+    <input [(ngModel)]="element.name" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>description</label>
+    <input [(ngModel)]="element.description" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>unique?</label>
+    <input [(ngModel)]="element.unique" type="checkbox" class="form-control" />
+  </div>
 
-    <label class="image-upload-container btn btn-bwm">
-        <span> image </span>
-        <input #imageInput type='file' accept='image/*' (change)='processFile(imageInput)'>
-    </label>
-    <div>
-        <button (click)='save()'>save</button>
+  <div *ngIf="image" class="img-preview-container">
+    <div
+      class="img-preview{{ image.status === 'fail' ? '-error' : '' }}"
+      [ngStyle]="{ 'background-image': 'url(' + image.src + ')' }"
+    >
+      <img [src]="image.src" style="width: 400px; height: 250px" />
     </div>
-</div>>
+  </div>
+
+  <label class="image-upload-container btn btn-bwm">
+    <span> image </span>
+    <input
+      #imageInput
+      type="file"
+      accept="image/*"
+      (change)="processFile(imageInput)"
+    />
+  </label>
+  <div>
+    <button (click)="save()" class="btn btn-outline-success">save</button>
+    <a [routerLink]="['/dashboard']" class="btn btn-outline-warning">cancel</a>
+  </div>
+</div>
+>

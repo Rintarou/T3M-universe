@@ -44,5 +44,6 @@ export class LoginComponent implements OnInit {
         this.showMessage = true;
       }
     );
+    this.router.navigate(['home']);
   }
 }

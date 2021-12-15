@@ -42,7 +42,7 @@ public class Security extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 				.antMatchers(HttpMethod.GET,"/api/user/**").permitAll()
 				.antMatchers(HttpMethod.POST,"/api/user").permitAll()
-				.antMatchers(HttpMethod.POST,"/api/{universe_id}/element").access("@customWebSecurity.checkWrite(authentication,#universe_id)")
+				.antMatchers(HttpMethod.POST,"/api/{universe_id}/element/**").access("@customWebSecurity.checkWrite(authentication,#universe_id)")
 				.antMatchers(HttpMethod.PUT,"/api/{universe_id}/element/{id}").access("@customWebSecurity.checkWrite(authentication,#universe_id)")
 				.antMatchers(HttpMethod.DELETE,"/api/{universe_id}/element/{id}").access("@customWebSecurity.checkWrite(authentication,#universe_id)")
 				.antMatchers(HttpMethod.PUT,"/api/universe/{id}").access("@customWebSecurity.checkOwner(authentication,#id)")

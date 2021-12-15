@@ -13,6 +13,9 @@ import { LoginComponent } from './components/login/login.component';
 import { InscriptionComponent } from './components/inscription/inscription.component';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardElementComponent } from './components/dashboard-element/dashboard-element.component';
+import { UniverseEditorComponent } from './components/universe-editor/universe-editor.component';
+import { DashboardUniverseComponent } from './components/dashboard-universe/dashboard-universe.component';
+import { UniverseComponent } from './components/universe/universe.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,9 @@ import { DashboardElementComponent } from './components/dashboard-element/dashbo
     InscriptionComponent,
     HomeComponent,
     DashboardElementComponent,
+    UniverseEditorComponent,
+    DashboardUniverseComponent,
+    UniverseComponent,
   ],
   imports: [
     BrowserModule,
