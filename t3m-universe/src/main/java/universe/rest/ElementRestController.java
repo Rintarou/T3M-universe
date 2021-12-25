@@ -48,7 +48,7 @@ public class ElementRestController {
 	@GetMapping("")
 	@JsonView( JsonViews.Common.class )
 	public Set<Element> findAllByUniverse(@PathVariable("universe_id") Long universe_id) {
-		return elementService.byUniverse(universeService.byId(universe_id));
+		return elementService.byUniverse( universeService.byId( universe_id ) );
 	}
 	
 
@@ -62,7 +62,6 @@ public class ElementRestController {
 	@JsonView( JsonViews.Common.class )
 	public Element byId( @PathVariable("id") Long id ) { //@PathVariable("universe_id") Long universe_id,
 		return elementService.byId( id );
-		
 	}
 	
 	@GetMapping("/{id}/children")

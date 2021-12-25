@@ -33,3 +33,6 @@
 
 ### VS Code ###
 .vscode/
+
+### node_modules
+# universe-vue/node_modules
